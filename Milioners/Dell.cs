@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace Milioners
 {
-    public partial class Dell : Form
+    public partial class Dell : Form , IDell
     {
         public Dell()
         {
             InitializeComponent();
         }
+
+        public event EventHandler<EventArgs> Login;
     }
 }

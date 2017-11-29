@@ -8,6 +8,6 @@ namespace Milioners
 {
     public interface IDell
     {
-        event MyDelegate ev;
+        event EventHandler<EventArgs> Login;
     }
 }

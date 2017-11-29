@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace How_become_milioner
+namespace Milioners
 {
     [Serializable]
     public class Question
@@ -58,6 +58,12 @@ namespace How_become_milioner
             this.answer_2 = "";
             this.answer_3 = "";
             this.answer_4 = "";
+        }
+
+        public bool IsCorect()
+        {
+            return question != "" && answer_1 != "" && answer_2 != "" && answer_3 != "" && answer_4 != "";
+          
         }
     }
 }

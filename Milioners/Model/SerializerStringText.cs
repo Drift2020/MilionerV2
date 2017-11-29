@@ -7,9 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace How_become_milioner
+namespace Milioners
 {
-    class SerializerStringText : ISerializer
+    class XMLSerializer : ISerializer
     {
         FileStream stream = null;
         XmlSerializer serializer = null;

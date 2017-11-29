@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace How_become_milioner
+namespace Milioners
 {
     public interface ISerializer
     {
