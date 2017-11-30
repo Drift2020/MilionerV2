@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Milioners
 {
-    class P_Add_Edit
+    class P_Add
     {
         private readonly Question _model = new Question();
         private readonly I_Add_Edit _view;
 
-        public P_Add_Edit(I_Add_Edit view)
+        public P_Add(I_Add_Edit view)
         {
             _view = view;
             // Презентер подписывается на уведомления о событиях Представления

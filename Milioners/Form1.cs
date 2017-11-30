@@ -27,13 +27,26 @@ namespace Milioners
 
         private void CreatQvest_Click(object sender, EventArgs e)
         {
-            Add_Edit Add_Edit_form = new Add_Edit();
+            Add_Edit Add_Edit_form = new Add_Edit(true);
 
-            P_Add_Edit loginPresenter = new P_Add_Edit(Add_Edit_form);
+            P_Add loginPresenter = new P_Add(Add_Edit_form);
 
             if (Add_Edit_form.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show("Вопрос создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Edit_Quest_Click(object sender, EventArgs e)
+        {
+
+            Add_Edit Add_Edit_form = new Add_Edit(false);
+
+            P_Edit loginPresenter = new P_Edit(Add_Edit_form);
+
+            if (Add_Edit_form.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("вопрос изменён.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

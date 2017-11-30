@@ -39,7 +39,7 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.CreatQvest = new System.Windows.Forms.ToolStripMenuItem();
-            this.изменениеВопросаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Edit_Quest = new System.Windows.Forms.ToolStripMenuItem();
             this.удалениеВопросаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.оИгреToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,7 +120,7 @@
             // 
             this.ToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CreatQvest,
-            this.изменениеВопросаToolStripMenuItem,
+            this.Edit_Quest,
             this.удалениеВопросаToolStripMenuItem});
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
             this.ToolStripMenuItem1.Size = new System.Drawing.Size(106, 20);
@@ -133,11 +133,12 @@
             this.CreatQvest.Text = "Создать вопрос";
             this.CreatQvest.Click += new System.EventHandler(this.CreatQvest_Click);
             // 
-            // изменениеВопросаToolStripMenuItem
+            // Edit_Quest
             // 
-            this.изменениеВопросаToolStripMenuItem.Name = "изменениеВопросаToolStripMenuItem";
-            this.изменениеВопросаToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.изменениеВопросаToolStripMenuItem.Text = "Изменение вопроса";
+            this.Edit_Quest.Name = "Edit_Quest";
+            this.Edit_Quest.Size = new System.Drawing.Size(185, 22);
+            this.Edit_Quest.Text = "Изменение вопроса";
+            this.Edit_Quest.Click += new System.EventHandler(this.Edit_Quest_Click);
             // 
             // удалениеВопросаToolStripMenuItem
             // 
@@ -194,7 +195,7 @@
         private System.Windows.Forms.ToolStripMenuItem остановатьИгруToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CreatQvest;
-        private System.Windows.Forms.ToolStripMenuItem изменениеВопросаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Edit_Quest;
         private System.Windows.Forms.ToolStripMenuItem удалениеВопросаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оИгреToolStripMenuItem;
     }

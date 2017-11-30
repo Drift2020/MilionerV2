@@ -150,6 +150,7 @@
             this.NumberQuest.Size = new System.Drawing.Size(60, 20);
             this.NumberQuest.TabIndex = 12;
             this.NumberQuest.Text = "1";
+            this.NumberQuest.SelectedItemChanged += new System.EventHandler(this.NumberQuest_SelectedItemChanged);
             // 
             // NameQuest
             // 
@@ -179,6 +180,7 @@
             this.Controls.Add(this.textBoxAnswer_2);
             this.Controls.Add(this.textBoxAnswer_1);
             this.Controls.Add(this.textBoxQuestion);
+            this.MaximizeBox = false;
             this.Name = "Add_Edit";
             this.Text = "Add_Edit";
             this.ResumeLayout(false);

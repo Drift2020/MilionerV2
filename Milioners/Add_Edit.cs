@@ -19,15 +19,20 @@ namespace Milioners
 
         public Add_Edit(bool add)
         {
-            if(add)
+            InitializeComponent();
+            if (add)
             {
-                NameQuest.
+                NameQuest.Visible = false;
+                NumberQuest.Visible = false;
+                this.Text = "Создание вопрос";
             }
             else
             {
-
+                NameQuest.Visible = true;
+                NumberQuest.Visible = true;
+                this.Text = "Изменение вопроса";
             }
-            InitializeComponent();
+           
         }
 
         public event EventHandler<EventArgs> Quest;
@@ -71,6 +76,11 @@ namespace Milioners
         private void button1_Click(object sender, EventArgs e)
         {
             Quest?.Invoke(this, EventArgs.Empty);
-        }     
+        }
+
+        private void NumberQuest_SelectedItemChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
