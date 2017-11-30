@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Milioners
 {
-    [Serializable]
+    [Serializable(), XmlInclude(typeof(Question))]
     public class Question
     {
+
         string question;
         string answer_1;
         string answer_2;

@@ -26,7 +26,7 @@ namespace Milioners
             List<Question> temp;
 
             stream = new FileStream("../../list.xml", FileMode.Open);
-            serializer = new XmlSerializer(typeof(List<int>));
+            serializer = new XmlSerializer(typeof(List<Question>));
             temp = (List<Question>)serializer.Deserialize(stream);
           
 

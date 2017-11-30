@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Milioners
 {
+
+
+    [Serializable(), XmlInclude(typeof(Question))]
     public class Сontainer
     {
         List<Question> ques = new List<Question>();
-        
-    
+
+        public Сontainer() { }
+
         ISerializer serialize;
         public void SetSerializer(ISerializer serialize)
         {

@@ -28,7 +28,7 @@ namespace Milioners
             _model.Answer_1 = _view.Answer_1;
             _model.Answer_2 = _view.Answer_2;
             _model.Answer_3 = _view.Answer_3;
-            _model.Answer_1 = _view.Answer_4;
+            _model.Answer_4 = _view.Answer_4;
 
             if (_model.IsCorect())
                 _view.AcseptAdd();

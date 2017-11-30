@@ -74,6 +74,7 @@
     <Compile Include="Model\Сontainer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="P_Global.cs" />
     <EmbeddedResource Include="Add_Edit.resx">
       <DependentUpon>Add_Edit.cs</DependentUpon>
     </EmbeddedResource>
