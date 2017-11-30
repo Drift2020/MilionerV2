@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Milioners
 {
-    class P_Add_Edit
+    class P_Edit
     {
         private readonly Question _model = new Question();
         private readonly I_Add_Edit _view;
 
-        public P_Add_Edit(I_Add_Edit view)
+        public P_Edit(I_Add_Edit view)
         {
             _view = view;
             // Презентер подписывается на уведомления о событиях Представления
@@ -22,7 +22,7 @@ namespace Milioners
         private void OnOkey(object sender, EventArgs e)
         {
             // В ответ на изменения в Представлении необходимо изменить Модель
-            
+
 
             _model.Questio = _view.Questio;
             _model.Answer_1 = _view.Answer_1;
@@ -30,7 +30,7 @@ namespace Milioners
             _model.Answer_3 = _view.Answer_3;
             _model.Answer_4 = _view.Answer_4;
 
-          
+
 
             if (_model.IsCorect())
             {
@@ -62,6 +62,5 @@ namespace Milioners
             _view.Answer_3 = _model.Answer_3;
             _view.Answer_4 = _model.Answer_4;
         }
-
     }
 }

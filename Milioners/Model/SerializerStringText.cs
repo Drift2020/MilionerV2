@@ -15,7 +15,8 @@ namespace Milioners
         XmlSerializer serializer = null;
         public void Save(ICollection<Question> collection)
         {
-            stream = new FileStream("../../list.xml", FileMode.Create);
+           
+                stream = new FileStream("../../list.xml", FileMode.Create);
             serializer = new XmlSerializer(typeof(List<Question>));
             serializer.Serialize(stream, collection);
             stream.Close();
@@ -24,15 +25,20 @@ namespace Milioners
         public ICollection<Question> Load()
         {
             List<Question> temp;
-
-            stream = new FileStream("../../list.xml", FileMode.Open);
-            serializer = new XmlSerializer(typeof(List<Question>));
-            temp = (List<Question>)serializer.Deserialize(stream);
+            try
+            {
+                stream = new FileStream("../../list.xml", FileMode.Open);
+                serializer = new XmlSerializer(typeof(List<Question>));
+                temp = (List<Question>)serializer.Deserialize(stream);
           
 
-            stream.Close();
+                stream.Close();
 
-            return temp;
+                return temp;
+            }
+            catch (Exception ex) { };
+            stream.Close();
+            return new List<Question>();
         }
     }
 }

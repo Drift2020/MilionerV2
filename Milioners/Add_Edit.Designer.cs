@@ -40,6 +40,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.Ok = new System.Windows.Forms.Button();
             this.Cansel = new System.Windows.Forms.Button();
+            this.NumberQuest = new System.Windows.Forms.DomainUpDown();
+            this.NameQuest = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxQuestion
@@ -141,11 +143,30 @@
             this.Cansel.Text = "Отмена";
             this.Cansel.UseVisualStyleBackColor = true;
             // 
+            // NumberQuest
+            // 
+            this.NumberQuest.Location = new System.Drawing.Point(164, 2);
+            this.NumberQuest.Name = "NumberQuest";
+            this.NumberQuest.Size = new System.Drawing.Size(60, 20);
+            this.NumberQuest.TabIndex = 12;
+            this.NumberQuest.Text = "1";
+            // 
+            // NameQuest
+            // 
+            this.NameQuest.AutoSize = true;
+            this.NameQuest.Location = new System.Drawing.Point(69, 4);
+            this.NameQuest.Name = "NameQuest";
+            this.NameQuest.Size = new System.Drawing.Size(89, 13);
+            this.NameQuest.TabIndex = 13;
+            this.NameQuest.Text = "Номер вопроса:";
+            // 
             // Add_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(286, 430);
+            this.Controls.Add(this.NameQuest);
+            this.Controls.Add(this.NumberQuest);
             this.Controls.Add(this.Cansel);
             this.Controls.Add(this.Ok);
             this.Controls.Add(this.label5);
@@ -179,5 +200,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button Ok;
         private System.Windows.Forms.Button Cansel;
+        private System.Windows.Forms.DomainUpDown NumberQuest;
+        private System.Windows.Forms.Label NameQuest;
     }
 }

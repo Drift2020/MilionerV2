@@ -21,7 +21,7 @@ namespace Milioners
         {
             if(add)
             {
-
+                NameQuest.
             }
             else
             {
@@ -58,15 +58,7 @@ namespace Milioners
         }
 
         public void AcseptAdd()
-        {
-
-            Сontainer c = new Сontainer();
-
-            c.SetSerializer(new XMLSerializer());
-            c.Load();
-            c.Add(new Question(Questio, Answer_1, Answer_2, Answer_3, Answer_4));
-            c.Save();
-
+        {       
             DialogResult = DialogResult.OK;
         }
 
@@ -76,15 +68,9 @@ namespace Milioners
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
- 
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             Quest?.Invoke(this, EventArgs.Empty);
-        }
-
-        
+        }     
     }
 }

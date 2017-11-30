@@ -52,6 +52,7 @@
       <DependentUpon>Add_Edit.cs</DependentUpon>
     </Compile>
     <Compile Include="Add_Edit\P_Add_Edit.cs" />
+    <Compile Include="Add_Edit\P_Edit.cs" />
     <Compile Include="Dell.cs">
       <SubType>Form</SubType>
     </Compile>
