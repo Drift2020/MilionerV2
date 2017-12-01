@@ -8,6 +8,11 @@ namespace Milioners
 {
     public interface IDell
     {
-        event EventHandler<EventArgs> Login;
+        event EventHandler<EventArgs> Dells;
+        event EventHandler<EventArgs> Updete;
+        string Tex_Question { set; get; }
+        int Value { set; get; }
+        int Max { set; get; }
+        void Acsept_Dell();
     }
 }

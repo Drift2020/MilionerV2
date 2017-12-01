@@ -49,5 +49,18 @@ namespace Milioners
                 MessageBox.Show("вопрос изменён.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void Dell_Question_Click(object sender, EventArgs e)
+        {
+
+            Dell Dell_form = new Dell();
+
+            P_Dell loginPresenter = new P_Dell(Dell_form);
+
+            if (Dell_form.ShowDialog() == DialogResult.OK)
+            {
+              //  MessageBox.Show("Вопрос удалён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

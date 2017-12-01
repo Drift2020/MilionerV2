@@ -12,9 +12,7 @@ namespace Milioners
 {
     public partial class Add_Edit : Form, I_Add_Edit
     {
-        public int min=1;
-        public int max=2;
-        public int value=1;
+     
 
        
         public Add_Edit()
@@ -30,26 +28,24 @@ namespace Milioners
                 NameQuest.Visible = false;
                 numericUpDown1.Visible = false;
                 this.Text = "Создание вопрос";
+                Ok.Text = "Добавить";
+
             }
             else
             {
                 NameQuest.Visible = true;
                 numericUpDown1.Visible = true;
                 this.Text = "Изменение вопроса";
-
-                value = Int32.Parse(numericUpDown1.Value.ToString());
-                NumderQuest?.Invoke(this, EventArgs.Empty);
-                numericUpDown1.Minimum = min;
-
-                numericUpDown1.Maximum = max;
-
+                Ok.Text = "Изменить";
 
             }
            
         }
 
+
         
         public event EventHandler<EventArgs> Quest;
+
         public event EventHandler<EventArgs> NumderQuest;
 
         public string Questio {
@@ -75,6 +71,16 @@ namespace Milioners
         {
             set { textBoxAnswer_4.Text = value; }
             get { return textBoxAnswer_4.Text.Trim(); }
+        }
+
+        public int Value
+        {
+            set { numericUpDown1.Value = value; }
+            get { return Int32.Parse(numericUpDown1.Value.ToString()); }
+        }
+        public int Max {
+            set { numericUpDown1.Maximum = value; }
+            get { return Int32.Parse(numericUpDown1.Maximum.ToString()); }
         }
 
         public void Acsept_Add()
@@ -103,10 +109,12 @@ namespace Milioners
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            value = Int32.Parse(numericUpDown1.Value.ToString());
-           
-            NumderQuest?.Invoke(this, EventArgs.Empty);
-            numericUpDown1.Maximum = max;
+            NumderQuest?.Invoke(this, EventArgs.Empty);          
+        }
+
+        private void Cansel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

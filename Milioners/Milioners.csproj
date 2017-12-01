@@ -79,6 +79,9 @@
     <EmbeddedResource Include="Add_Edit.resx">
       <DependentUpon>Add_Edit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dell.resx">
+      <DependentUpon>Dell.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

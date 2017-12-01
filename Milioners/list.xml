@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <ArrayOfQuestion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Question>
-    <Questio>Question</Questio>
-    <Answer_1>Question</Answer_1>
-    <Answer_2>Question</Answer_2>
-    <Answer_3>Question</Answer_3>
-    <Answer_4>Question</Answer_4>
+    <Questio>Как мировая пресса называла премьер-министра Великобритании Маргарет Тэтчер?</Questio>
+    <Answer_1>Железная леди</Answer_1>
+    <Answer_2>S</Answer_2>
+    <Answer_3>S</Answer_3>
+    <Answer_4>S</Answer_4>
   </Question>
   <Question>
     <Questio>S</Questio>
@@ -13,5 +13,12 @@
     <Answer_2>S</Answer_2>
     <Answer_3>S</Answer_3>
     <Answer_4>S</Answer_4>
+  </Question>
+  <Question>
+    <Questio>g</Questio>
+    <Answer_1>f</Answer_1>
+    <Answer_2>d</Answer_2>
+    <Answer_3>s</Answer_3>
+    <Answer_4>a</Answer_4>
   </Question>
 </ArrayOfQuestion>

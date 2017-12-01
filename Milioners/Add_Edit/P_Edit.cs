@@ -14,7 +14,6 @@ namespace Milioners
         
         public P_Edit(I_Add_Edit view)
         {
-
             c.SetSerializer(new XMLSerializer());         
             c.Load();
 
@@ -24,8 +23,7 @@ namespace Milioners
             _view.NumderQuest += new EventHandler<EventArgs>(UpdateNumberQuest);
 
             _model = c.Element(0).Clone() as Question;
-
-
+            _view.Max = c.Count();
             UpdateView();
         }
 
@@ -38,12 +36,15 @@ namespace Milioners
             _model.Answer_3 = _view.Answer_3;
             _model.Answer_4 = _view.Answer_4;
 
-
-
-
-
             if (_model.IsCorect())
-            {            
+            {
+                c.Element(0).Questio = _model.Questio;
+                c.Element(0).Answer_1 = _model.Answer_1 ;
+                c.Element(0).Answer_2 = _model.Answer_2 ;
+                c.Element(0).Answer_3 = _model.Answer_3;
+                c.Element(0).Answer_4 = _model.Answer_4;
+              
+                c.Save();
                 _view.Acsept_Edit();
             }
             else
@@ -58,13 +59,9 @@ namespace Milioners
             UpdateView();
         }
         private void UpdateNumberQuest(object sender, EventArgs e)
-        {
-          
-            
-            Question t = (c.Element((sender as Add_Edit).value - 1).Clone() as Question);
-
-            (sender as Add_Edit).max = c.Count();
-
+        {                    
+            Question t = (c.Element(_view.Value-1).Clone() as Question);
+           
 
             _model.Questio = t.Questio;
             _model.Answer_1 = t.Answer_1;
