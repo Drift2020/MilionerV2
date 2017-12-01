@@ -8,8 +8,12 @@ using System.Xml.Serialization;
 namespace Milioners
 {
     [Serializable(), XmlInclude(typeof(Question))]
-    public class Question
+    public class Question : ICloneable
     {
+        public object Clone()
+        {
+            return new Question(question, answer_1, answer_2, answer_3, answer_4);
+        }
 
         string question;
         string answer_1;

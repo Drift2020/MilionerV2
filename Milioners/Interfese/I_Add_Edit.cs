@@ -9,6 +9,8 @@ namespace Milioners
     public interface I_Add_Edit
     {     
         event EventHandler<EventArgs> Quest;
+        event EventHandler<EventArgs> NumderQuest;
+
 
         string Questio { set; get; }
         string Answer_1 { set; get; }
@@ -16,7 +18,10 @@ namespace Milioners
         string Answer_3 { set; get; }
         string Answer_4 { set; get; }
 
-        void AcseptAdd();
-        void DontAdd();
+        void Acsept_Add();
+        void Dont_Add();
+
+        void Acsept_Edit();
+        void Dont_Edit();
     }
 }

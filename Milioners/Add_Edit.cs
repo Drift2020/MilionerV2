@@ -12,6 +12,11 @@ namespace Milioners
 {
     public partial class Add_Edit : Form, I_Add_Edit
     {
+        public int min=1;
+        public int max=2;
+        public int value=1;
+
+       
         public Add_Edit()
         {
             InitializeComponent();
@@ -23,19 +28,29 @@ namespace Milioners
             if (add)
             {
                 NameQuest.Visible = false;
-                NumberQuest.Visible = false;
+                numericUpDown1.Visible = false;
                 this.Text = "Создание вопрос";
             }
             else
             {
                 NameQuest.Visible = true;
-                NumberQuest.Visible = true;
+                numericUpDown1.Visible = true;
                 this.Text = "Изменение вопроса";
+
+                value = Int32.Parse(numericUpDown1.Value.ToString());
+                NumderQuest?.Invoke(this, EventArgs.Empty);
+                numericUpDown1.Minimum = min;
+
+                numericUpDown1.Maximum = max;
+
+
             }
            
         }
 
+        
         public event EventHandler<EventArgs> Quest;
+        public event EventHandler<EventArgs> NumderQuest;
 
         public string Questio {
             set { textBoxQuestion.Text = value; }
@@ -62,14 +77,22 @@ namespace Milioners
             get { return textBoxAnswer_4.Text.Trim(); }
         }
 
-        public void AcseptAdd()
+        public void Acsept_Add()
         {       
             DialogResult = DialogResult.OK;
         }
-
-        public void DontAdd()
+        public void Dont_Add()
         {
             MessageBox.Show("Ошибка при заполнении поля.", "Добавление вопроса",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        public void Acsept_Edit()
+        {
+            DialogResult = DialogResult.OK;
+        }
+        public void Dont_Edit()
+        {
+            MessageBox.Show("Ошибка при заполнении поля.", "Изменение вопроса",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -78,9 +101,12 @@ namespace Milioners
             Quest?.Invoke(this, EventArgs.Empty);
         }
 
-        private void NumberQuest_SelectedItemChanged(object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-
+            value = Int32.Parse(numericUpDown1.Value.ToString());
+           
+            NumderQuest?.Invoke(this, EventArgs.Empty);
+            numericUpDown1.Maximum = max;
         }
     }
 }

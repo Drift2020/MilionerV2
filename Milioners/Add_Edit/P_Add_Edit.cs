@@ -41,11 +41,11 @@ namespace Milioners
                 c.Add(new Question(_model.Questio, _model.Answer_1, _model.Answer_2, _model.Answer_3, _model.Answer_4));
                 c.Save();
 
-                _view.AcseptAdd();
+                _view.Acsept_Add();
             }
             else
             {
-                _view.DontAdd();
+                _view.Dont_Add();
             }
 
             // В данной форме этот вызов не нужен, однако в общем

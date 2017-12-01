@@ -12,14 +12,15 @@ namespace Milioners
     [Serializable(), XmlInclude(typeof(Question))]
     public class Сontainer
     {
+      
         List<Question> ques = new List<Question>();
 
-        public Сontainer() { }
-
         ISerializer serialize;
+        public Сontainer() { }
         public void SetSerializer(ISerializer serialize)
         {
             this.serialize = serialize;
+           
         }
       
         public void Add(Question question)
@@ -49,6 +50,14 @@ namespace Milioners
         {
             ques = serialize.Load() as List<Question>;
           //  log.Write("Десериализация успешно выполнена!");
+        }
+       public Question Element (int index)
+       {
+                return ques[index];       
+       }
+        public int Count()
+        {
+            return ques.Count;
         }
         //public void Print()
         //{
