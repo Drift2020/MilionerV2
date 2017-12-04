@@ -17,7 +17,10 @@ namespace Milioners
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new Form1());
+            Form1 global = new Form1();          
+            P_Global loginPresenter = new P_Global(global);
+
+            Application.Run(global);
         }
     }
 }

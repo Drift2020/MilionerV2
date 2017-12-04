@@ -11,18 +11,36 @@ using System.Windows.Forms;
 namespace Milioners
 {
     public delegate void MyDelegate();
-    public partial class Form1 : Form
+    public partial class Form1 : Form , I_Global
     {
       
         public Form1()
         {
           
             InitializeComponent();
+
+            Flag.Visible = false;
+            Exit.Visible = false;
+            Stop.Visible = false;
+            QuestTable.Visible = false;
+            NumberlistView.Visible = false;
+            Ansver_A.Visible = false;
+            Ansver_B.Visible = false;
+            Ansver_C.Visible = false;
+            Ansver_D.Visible = false;
+            FandF.Visible = false;
+            HelpCall.Visible = false;
+            HelpRoom.Visible = false;
+            groupBox1.Visible = false;
+
         }
+        public event EventHandler<EventArgs> Conteiner;
+
+        public Сontainer Questio { set; get; }
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            Close();
         }
 
         private void CreatQvest_Click(object sender, EventArgs e)
@@ -61,6 +79,21 @@ namespace Milioners
             {
               //  MessageBox.Show("Вопрос удалён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+        
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Exit_tolbar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

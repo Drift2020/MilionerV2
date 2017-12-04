@@ -8,5 +8,11 @@ namespace Milioners
 {
     class P_Global
     {
+        private readonly I_Global _view;
+
+        public P_Global(I_Global vive)
+        {
+
+        }
     }
 }

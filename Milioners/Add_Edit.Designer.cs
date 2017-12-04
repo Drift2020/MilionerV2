@@ -176,6 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(286, 430);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.NameQuest);
@@ -192,6 +193,7 @@
             this.Controls.Add(this.textBoxAnswer_1);
             this.Controls.Add(this.textBoxQuestion);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Add_Edit";
             this.Text = "Add_Edit";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
