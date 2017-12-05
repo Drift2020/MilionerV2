@@ -15,26 +15,8 @@ namespace Milioners
     {
 
         public Form1()
-        {
-          
-            InitializeComponent();
-
-           
-
-            Flag.Visible = false;
-            Exit.Visible = false;
-            Stop.Visible = false;
-            QuestTable.Visible = false;
-            NumberlistView.Visible = false;
-            Ansver_A.Visible = false;
-            Ansver_B.Visible = false;
-            Ansver_C.Visible = false;
-            Ansver_D.Visible = false;
-            FandF.Visible = false;
-            HelpCall.Visible = false;
-            HelpRoom.Visible = false;
-            groupBox1.Visible = false;
-
+        {         
+           InitializeComponent();
         }
 
         public event EventHandler<EventArgs> StartGame;
@@ -47,10 +29,38 @@ namespace Milioners
         {
             set; get;
         }
+        public Button FlagS { set { Flag = value; } get { return Flag; } }
+        public Button ExitS { set { Exit= value; } get { return Exit; } }
+        public Button StopS { set { Stop= value; } get { return Stop; } }
+        public Label QuestTableS { set { QuestTable= value; } get { return QuestTable; } }
+        public ListView NumberlistViewS { set { NumberlistView= value; } get { return NumberlistView; } }
+        public Button Ansver_AS { set { Ansver_A= value; } get { return Ansver_A; } }
+        public Button Ansver_BS { set { Ansver_B= value; } get { return Ansver_B; } }
+        public Button Ansver_CS { set { Ansver_C= value; } get { return Ansver_C;} }
+        public Button Ansver_DS { set { Ansver_D= value; } get { return Ansver_D ; } }
+        public Button FandFS { set { FandF= value; } get { return FandF; } }
+        public Button HelpCallS { set { HelpCall= value; } get { return HelpCall; } }
+        public Button HelpRoomS { set { HelpRoom= value; } get { return HelpRoom; } }
+        public GroupBox HelpVariantS { set { HelpVariant= value; } get { return HelpVariant; } }
 
-        private void button1_Click(object sender, EventArgs e)
+        public PictureBox CallPictureBoxS { set { CallPictureBox= value; } get { return CallPictureBox; } }
+        public Label CallLabelS { set { CallLabel= value; } get { return CallLabel; } }
+
+        public PictureBox AnsverPictureBoxS { set { AnsverPictureBox= value; } get { return AnsverPictureBox ; } }
+        public Label AnsverLabelS { set { AnsverLabel= value; } get { return AnsverLabel ; } }
+        public GroupBox HelpBarS { set { HelpBar= value; } get { return HelpBar; } }
+
+
+
+        public void Exitf()
         {
             Close();
+        }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            ExitGame?.Invoke(this, EventArgs.Empty);
         }
 
         private void CreatQvest_Click(object sender, EventArgs e)
@@ -89,12 +99,20 @@ namespace Milioners
 
         private void Exit_tolbar_Click(object sender, EventArgs e)
         {
-            Close();
+
+            ExitGame?.Invoke(this, EventArgs.Empty);
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Close();
+
+            ExitGame?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

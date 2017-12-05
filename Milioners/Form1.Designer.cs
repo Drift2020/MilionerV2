@@ -48,33 +48,33 @@
             this.Ansver_B = new System.Windows.Forms.Button();
             this.Ansver_C = new System.Windows.Forms.Button();
             this.Ansver_D = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.CallLabel = new System.Windows.Forms.Label();
-            this.AnsverPictureBox = new System.Windows.Forms.PictureBox();
-            this.CallPictureBox = new System.Windows.Forms.PictureBox();
+            this.HelpVariant = new System.Windows.Forms.GroupBox();
             this.FandF = new System.Windows.Forms.Button();
             this.HelpCall = new System.Windows.Forms.Button();
             this.HelpRoom = new System.Windows.Forms.Button();
+            this.CallLabel = new System.Windows.Forms.Label();
+            this.AnsverPictureBox = new System.Windows.Forms.PictureBox();
+            this.CallPictureBox = new System.Windows.Forms.PictureBox();
             this.Exit = new System.Windows.Forms.Button();
             this.Flag = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.AnsverLabel = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.progressBar4 = new System.Windows.Forms.ProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.HelpBar = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.progressBar4 = new System.Windows.Forms.ProgressBar();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.NumberlistView = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.HelpVariant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AnsverPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CallPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.HelpBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -269,49 +269,19 @@
             this.Ansver_D.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Ansver_D.UseVisualStyleBackColor = false;
             // 
-            // groupBox1
+            // HelpVariant
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Controls.Add(this.FandF);
-            this.groupBox1.Controls.Add(this.HelpCall);
-            this.groupBox1.Controls.Add(this.HelpRoom);
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.groupBox1.Location = new System.Drawing.Point(540, 27);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 73);
-            this.groupBox1.TabIndex = 16;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Подсказки";
-            // 
-            // CallLabel
-            // 
-            this.CallLabel.BackColor = System.Drawing.Color.DarkCyan;
-            this.CallLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CallLabel.ForeColor = System.Drawing.Color.Yellow;
-            this.CallLabel.Location = new System.Drawing.Point(168, 130);
-            this.CallLabel.Name = "CallLabel";
-            this.CallLabel.Size = new System.Drawing.Size(173, 52);
-            this.CallLabel.TabIndex = 18;
-            this.CallLabel.Text = "label1";
-            this.CallLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // AnsverPictureBox
-            // 
-            this.AnsverPictureBox.Image = global::Milioners.Properties.Resources.Безымянный;
-            this.AnsverPictureBox.Location = new System.Drawing.Point(447, 228);
-            this.AnsverPictureBox.Name = "AnsverPictureBox";
-            this.AnsverPictureBox.Size = new System.Drawing.Size(81, 95);
-            this.AnsverPictureBox.TabIndex = 19;
-            this.AnsverPictureBox.TabStop = false;
-            // 
-            // CallPictureBox
-            // 
-            this.CallPictureBox.Image = global::Milioners.Properties.Resources.zvonok;
-            this.CallPictureBox.Location = new System.Drawing.Point(35, 98);
-            this.CallPictureBox.Name = "CallPictureBox";
-            this.CallPictureBox.Size = new System.Drawing.Size(133, 107);
-            this.CallPictureBox.TabIndex = 17;
-            this.CallPictureBox.TabStop = false;
+            this.HelpVariant.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.HelpVariant.Controls.Add(this.FandF);
+            this.HelpVariant.Controls.Add(this.HelpCall);
+            this.HelpVariant.Controls.Add(this.HelpRoom);
+            this.HelpVariant.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.HelpVariant.Location = new System.Drawing.Point(540, 27);
+            this.HelpVariant.Name = "HelpVariant";
+            this.HelpVariant.Size = new System.Drawing.Size(200, 73);
+            this.HelpVariant.TabIndex = 16;
+            this.HelpVariant.TabStop = false;
+            this.HelpVariant.Text = "Подсказки";
             // 
             // FandF
             // 
@@ -347,6 +317,36 @@
             this.HelpRoom.TabIndex = 10;
             this.HelpRoom.UseVisualStyleBackColor = true;
             // 
+            // CallLabel
+            // 
+            this.CallLabel.BackColor = System.Drawing.Color.DarkCyan;
+            this.CallLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CallLabel.ForeColor = System.Drawing.Color.Yellow;
+            this.CallLabel.Location = new System.Drawing.Point(168, 130);
+            this.CallLabel.Name = "CallLabel";
+            this.CallLabel.Size = new System.Drawing.Size(173, 52);
+            this.CallLabel.TabIndex = 18;
+            this.CallLabel.Text = "label1";
+            this.CallLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // AnsverPictureBox
+            // 
+            this.AnsverPictureBox.Image = global::Milioners.Properties.Resources.Безымянный;
+            this.AnsverPictureBox.Location = new System.Drawing.Point(447, 228);
+            this.AnsverPictureBox.Name = "AnsverPictureBox";
+            this.AnsverPictureBox.Size = new System.Drawing.Size(81, 95);
+            this.AnsverPictureBox.TabIndex = 19;
+            this.AnsverPictureBox.TabStop = false;
+            // 
+            // CallPictureBox
+            // 
+            this.CallPictureBox.Image = global::Milioners.Properties.Resources.zvonok;
+            this.CallPictureBox.Location = new System.Drawing.Point(35, 98);
+            this.CallPictureBox.Name = "CallPictureBox";
+            this.CallPictureBox.Size = new System.Drawing.Size(133, 107);
+            this.CallPictureBox.TabIndex = 17;
+            this.CallPictureBox.TabStop = false;
+            // 
             // Exit
             // 
             this.Exit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -358,6 +358,7 @@
             this.Exit.Size = new System.Drawing.Size(62, 32);
             this.Exit.TabIndex = 5;
             this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // Flag
             // 
@@ -400,61 +401,32 @@
             this.progressBar3.Size = new System.Drawing.Size(81, 13);
             this.progressBar3.TabIndex = 2;
             // 
-            // groupBox2
+            // HelpBar
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.Blue;
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.progressBar4);
-            this.groupBox2.Controls.Add(this.progressBar2);
-            this.groupBox2.Controls.Add(this.progressBar1);
-            this.groupBox2.Controls.Add(this.progressBar3);
-            this.groupBox2.ForeColor = System.Drawing.Color.Yellow;
-            this.groupBox2.Location = new System.Drawing.Point(401, 27);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(139, 111);
-            this.groupBox2.TabIndex = 21;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Подсказка";
+            this.HelpBar.BackColor = System.Drawing.Color.Blue;
+            this.HelpBar.Controls.Add(this.label4);
+            this.HelpBar.Controls.Add(this.label3);
+            this.HelpBar.Controls.Add(this.label2);
+            this.HelpBar.Controls.Add(this.label1);
+            this.HelpBar.Controls.Add(this.progressBar4);
+            this.HelpBar.Controls.Add(this.progressBar2);
+            this.HelpBar.Controls.Add(this.progressBar1);
+            this.HelpBar.Controls.Add(this.progressBar3);
+            this.HelpBar.ForeColor = System.Drawing.Color.Yellow;
+            this.HelpBar.Location = new System.Drawing.Point(401, 27);
+            this.HelpBar.Name = "HelpBar";
+            this.HelpBar.Size = new System.Drawing.Size(139, 111);
+            this.HelpBar.TabIndex = 21;
+            this.HelpBar.TabStop = false;
+            this.HelpBar.Text = "Подсказка";
             // 
-            // progressBar1
+            // label4
             // 
-            this.progressBar1.Location = new System.Drawing.Point(46, 39);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(81, 13);
-            this.progressBar1.TabIndex = 3;
-            // 
-            // progressBar2
-            // 
-            this.progressBar2.Location = new System.Drawing.Point(46, 60);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(81, 13);
-            this.progressBar2.TabIndex = 4;
-            // 
-            // progressBar4
-            // 
-            this.progressBar4.Location = new System.Drawing.Point(46, 79);
-            this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(81, 13);
-            this.progressBar4.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(6, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 17);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(6, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "label2";
+            this.label4.Location = new System.Drawing.Point(6, 79);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 17);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "label4";
             // 
             // label3
             // 
@@ -464,13 +436,42 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "label3";
             // 
-            // label4
+            // label2
             // 
-            this.label4.Location = new System.Drawing.Point(6, 79);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 17);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "label4";
+            this.label2.Location = new System.Drawing.Point(6, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "label2";
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(6, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 17);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "label1";
+            // 
+            // progressBar4
+            // 
+            this.progressBar4.Location = new System.Drawing.Point(46, 79);
+            this.progressBar4.Name = "progressBar4";
+            this.progressBar4.Size = new System.Drawing.Size(81, 13);
+            this.progressBar4.TabIndex = 5;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(46, 60);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(81, 13);
+            this.progressBar2.TabIndex = 4;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(46, 39);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(81, 13);
+            this.progressBar1.TabIndex = 3;
             // 
             // NumberlistView
             // 
@@ -488,12 +489,12 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(740, 546);
             this.Controls.Add(this.NumberlistView);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.HelpBar);
             this.Controls.Add(this.AnsverLabel);
             this.Controls.Add(this.AnsverPictureBox);
             this.Controls.Add(this.CallLabel);
             this.Controls.Add(this.CallPictureBox);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.HelpVariant);
             this.Controls.Add(this.Ansver_D);
             this.Controls.Add(this.Ansver_C);
             this.Controls.Add(this.Ansver_B);
@@ -512,11 +513,11 @@
             this.Text = "Миллионер";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.HelpVariant.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AnsverPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CallPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
+            this.HelpBar.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -549,13 +550,13 @@
         private System.Windows.Forms.Button Ansver_B;
         private System.Windows.Forms.Button Ansver_C;
         private System.Windows.Forms.Button Ansver_D;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox HelpVariant;
         private System.Windows.Forms.PictureBox CallPictureBox;
         private System.Windows.Forms.Label CallLabel;
         private System.Windows.Forms.PictureBox AnsverPictureBox;
         private System.Windows.Forms.Label AnsverLabel;
         private System.Windows.Forms.ProgressBar progressBar3;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox HelpBar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

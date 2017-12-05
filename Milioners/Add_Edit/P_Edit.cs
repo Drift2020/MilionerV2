@@ -10,13 +10,13 @@ namespace Milioners
     {
         private readonly Question _model = new Question();
         private readonly I_Add_Edit _view;
-        private readonly Сontainer c = new Сontainer();
+        private readonly Сontainer _c;
         
-        public P_Edit(I_Add_Edit view)
+        public P_Edit(I_Add_Edit view, Сontainer c)
         {
-            c.SetSerializer(new XMLSerializer());         
-            c.Load();
-
+            _c = c;
+           
+            
             _view = view;
             // Презентер подписывается на уведомления о событиях Представления
             _view.Quest += new EventHandler<EventArgs>(OnOkey);
@@ -38,13 +38,13 @@ namespace Milioners
 
             if (_model.IsCorect())
             {
-                c.Element(0).Questio = _model.Questio;
-                c.Element(0).Answer_1 = _model.Answer_1 ;
-                c.Element(0).Answer_2 = _model.Answer_2 ;
-                c.Element(0).Answer_3 = _model.Answer_3;
-                c.Element(0).Answer_4 = _model.Answer_4;
+                _c.Element(_view.Value - 1).Questio = _model.Questio;
+                _c.Element(_view.Value - 1).Answer_1 = _model.Answer_1 ;
+                _c.Element(_view.Value - 1).Answer_2 = _model.Answer_2 ;
+                _c.Element(_view.Value - 1).Answer_3 = _model.Answer_3;
+                _c.Element(_view.Value - 1).Answer_4 = _model.Answer_4;
               
-                c.Save();
+                _c.Save();
                 _view.Acsept_Edit();
             }
             else
@@ -60,7 +60,7 @@ namespace Milioners
         }
         private void UpdateNumberQuest(object sender, EventArgs e)
         {                    
-            Question t = (c.Element(_view.Value-1).Clone() as Question);
+            Question t = (_c.Element(_view.Value-1).Clone() as Question);
            
 
             _model.Questio = t.Questio;

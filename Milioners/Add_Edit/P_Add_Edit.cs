@@ -24,21 +24,15 @@ namespace Milioners
         {
             // В ответ на изменения в Представлении необходимо изменить Модель
             
-
             _model.Questio = _view.Questio;
             _model.Answer_1 = _view.Answer_1;
             _model.Answer_2 = _view.Answer_2;
             _model.Answer_3 = _view.Answer_3;
             _model.Answer_4 = _view.Answer_4;
-
-          
-
+        
             if (_model.IsCorect())
             {
-                
-               
-
-              
+                                           
                 _c.Add(new Question(_model.Questio, _model.Answer_1, _model.Answer_2, _model.Answer_3, _model.Answer_4));
                 _c.Save();
 

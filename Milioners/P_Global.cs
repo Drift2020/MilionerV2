@@ -25,6 +25,24 @@ namespace Milioners
             _view.ExitGame += new EventHandler<EventArgs>(ExitGame);
             _view.StopGame += new EventHandler<EventArgs>(StopGame);
 
+            _view.FlagS.Visible = false ;
+            _view.ExitS
+            _view.StopS
+            _view.QuestTableS
+            _view.NumberlistViewS
+            _view.Ansver_AS
+            _view.Ansver_BS
+            _view.Ansver_CS
+            _view.Ansver_DS
+            _view.FandFS
+            _view.HelpCallS
+            _view.HelpRoomS
+            _view.HelpVariantS
+            _view.CallPictureBoxS
+            _view.CallLabelS
+            _view.AnsverPictureBoxS
+            _view.AnsverLabelS
+            _view.HelpBarS
 
             UpdateView();
         }
@@ -52,7 +70,7 @@ namespace Milioners
 
             Add_Edit Add_Edit_form = new Add_Edit(false);
 
-            P_Edit loginPresenter = new P_Edit(Add_Edit_form);
+            P_Edit loginPresenter = new P_Edit(Add_Edit_form,c);
 
             _view.ShowDialog =Add_Edit_form.ShowDialog().ToString();       
         }
@@ -62,7 +80,8 @@ namespace Milioners
         }
         private void ExitGame(object sender, EventArgs e)
         {
-
+            c.Save();
+            _view.Exitf();
         }
         private void StopGame(object sender, EventArgs e)
         {
