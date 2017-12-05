@@ -8,10 +8,18 @@ namespace Milioners
 {
     public interface I_Global
     {
-        event EventHandler<EventArgs> Conteiner;
+        event EventHandler<EventArgs> StartGame;
+        event EventHandler<EventArgs> ExitGame;
+        event EventHandler<EventArgs> StopGame;
 
-        Сontainer Questio { set; get; }
+        event EventHandler<EventArgs> NewQuestion;
+        event EventHandler<EventArgs> EditQuestion;
+        event EventHandler<EventArgs> DellQuestion;
 
+        string ShowDialog
+        {
+            set;get;
+        }
 
     }
 }

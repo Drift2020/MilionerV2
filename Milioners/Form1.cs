@@ -13,11 +13,13 @@ namespace Milioners
     public delegate void MyDelegate();
     public partial class Form1 : Form , I_Global
     {
-      
+
         public Form1()
         {
           
             InitializeComponent();
+
+           
 
             Flag.Visible = false;
             Exit.Visible = false;
@@ -34,9 +36,17 @@ namespace Milioners
             groupBox1.Visible = false;
 
         }
-        public event EventHandler<EventArgs> Conteiner;
 
-        public Сontainer Questio { set; get; }
+        public event EventHandler<EventArgs> StartGame;
+        public event EventHandler<EventArgs> NewQuestion;
+        public event EventHandler<EventArgs> EditQuestion;
+        public event EventHandler<EventArgs> DellQuestion;
+        public event EventHandler<EventArgs> ExitGame;
+        public event EventHandler<EventArgs> StopGame;
+        public string ShowDialog
+        {
+            set; get;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -45,11 +55,9 @@ namespace Milioners
 
         private void CreatQvest_Click(object sender, EventArgs e)
         {
-            Add_Edit Add_Edit_form = new Add_Edit(true);
 
-            P_Add loginPresenter = new P_Add(Add_Edit_form);
-
-            if (Add_Edit_form.ShowDialog() == DialogResult.OK)
+            NewQuestion?.Invoke(this, EventArgs.Empty);
+            if (ShowDialog == DialogResult.OK.ToString())
             {
                 MessageBox.Show("Вопрос создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -57,27 +65,20 @@ namespace Milioners
 
         private void Edit_Quest_Click(object sender, EventArgs e)
         {
-
-            Add_Edit Add_Edit_form = new Add_Edit(false);
-
-            P_Edit loginPresenter = new P_Edit(Add_Edit_form);
-
-            if (Add_Edit_form.ShowDialog() == DialogResult.OK)
+            EditQuestion?.Invoke(this, EventArgs.Empty);
+            if (ShowDialog == DialogResult.OK.ToString())
             {
-                MessageBox.Show("вопрос изменён.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Вопрос создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void Dell_Question_Click(object sender, EventArgs e)
         {
 
-            Dell Dell_form = new Dell();
-
-            P_Dell loginPresenter = new P_Dell(Dell_form);
-
-            if (Dell_form.ShowDialog() == DialogResult.OK)
+            DellQuestion?.Invoke(this, EventArgs.Empty);
+            if (ShowDialog == DialogResult.OK.ToString())
             {
-              //  MessageBox.Show("Вопрос удалён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Вопрос удалён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         

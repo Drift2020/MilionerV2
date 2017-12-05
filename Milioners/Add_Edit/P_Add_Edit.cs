@@ -10,9 +10,10 @@ namespace Milioners
     {
         private readonly Question _model = new Question();
         private readonly I_Add_Edit _view;
-
-        public P_Add(I_Add_Edit view)
+        private Сontainer _c;
+        public P_Add(I_Add_Edit view, Сontainer c)
         {
+            _c = c;
             _view = view;
             // Презентер подписывается на уведомления о событиях Представления
             _view.Quest += new EventHandler<EventArgs>(OnOkey);
@@ -34,12 +35,12 @@ namespace Milioners
 
             if (_model.IsCorect())
             {
-                Сontainer c = new Сontainer();
+                
+               
 
-                c.SetSerializer(new XMLSerializer());
-                c.Load();
-                c.Add(new Question(_model.Questio, _model.Answer_1, _model.Answer_2, _model.Answer_3, _model.Answer_4));
-                c.Save();
+              
+                _c.Add(new Question(_model.Questio, _model.Answer_1, _model.Answer_2, _model.Answer_3, _model.Answer_4));
+                _c.Save();
 
                 _view.Acsept_Add();
             }
