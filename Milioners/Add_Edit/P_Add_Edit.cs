@@ -10,10 +10,21 @@ namespace Milioners
     {
         private readonly Question _model = new Question();
         private readonly I_Add_Edit _view;
-        private Сontainer _c;
+        private readonly Сontainer _c = new Сontainer();
         public P_Add(I_Add_Edit view, Сontainer c)
         {
             _c = c;
+            _view = view;
+            // Презентер подписывается на уведомления о событиях Представления
+            _view.Quest += new EventHandler<EventArgs>(OnOkey);
+            UpdateView();
+        }
+        public P_Add(I_Add_Edit view)
+        {
+          
+            _c.SetSerializer(new XMLSerializer());
+            _c.Load();
+
             _view = view;
             // Презентер подписывается на уведомления о событиях Представления
             _view.Quest += new EventHandler<EventArgs>(OnOkey);

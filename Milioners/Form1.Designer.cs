@@ -223,6 +223,7 @@
             this.Ansver_A.Text = "button3";
             this.Ansver_A.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Ansver_A.UseVisualStyleBackColor = false;
+            this.Ansver_A.Click += new System.EventHandler(this.AnsverClic);
             // 
             // Ansver_B
             // 
@@ -238,6 +239,7 @@
             this.Ansver_B.Text = "button4";
             this.Ansver_B.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Ansver_B.UseVisualStyleBackColor = false;
+            this.Ansver_B.Click += new System.EventHandler(this.AnsverClic);
             // 
             // Ansver_C
             // 
@@ -253,6 +255,7 @@
             this.Ansver_C.Text = "button5";
             this.Ansver_C.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Ansver_C.UseVisualStyleBackColor = false;
+            this.Ansver_C.Click += new System.EventHandler(this.AnsverClic);
             // 
             // Ansver_D
             // 
@@ -475,11 +478,15 @@
             // 
             // NumberlistView
             // 
+            this.NumberlistView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NumberlistView.FullRowSelect = true;
             this.NumberlistView.Location = new System.Drawing.Point(540, 98);
+            this.NumberlistView.Margin = new System.Windows.Forms.Padding(10);
             this.NumberlistView.Name = "NumberlistView";
             this.NumberlistView.Size = new System.Drawing.Size(203, 448);
             this.NumberlistView.TabIndex = 22;
             this.NumberlistView.UseCompatibleStateImageBehavior = false;
+            this.NumberlistView.View = System.Windows.Forms.View.Details;
             // 
             // Form1
             // 

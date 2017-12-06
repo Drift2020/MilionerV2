@@ -10,7 +10,7 @@ namespace Milioners
     {
         private readonly Question _model = new Question();
         private readonly I_Add_Edit _view;
-        private readonly Сontainer _c;
+        private readonly Сontainer _c= new Сontainer();
         
         public P_Edit(I_Add_Edit view, Сontainer c)
         {
@@ -24,6 +24,24 @@ namespace Milioners
 
             _model = c.Element(0).Clone() as Question;
             _view.Max = c.Count();
+            UpdateView();
+        }
+        public P_Edit(I_Add_Edit view)
+        {
+            _c.SetSerializer(new XMLSerializer());
+            _c.Load();
+
+            _view = view;
+            // Презентер подписывается на уведомления о событиях Представления
+            _view.Quest += new EventHandler<EventArgs>(OnOkey);
+            _view.NumderQuest += new EventHandler<EventArgs>(UpdateNumberQuest);
+
+            if(_c.Count()>0)
+            _model = _c.Element(0).Clone() as Question;
+            else
+                _model = new Question();
+
+            _view.Max = _c.Count();
             UpdateView();
         }
 
