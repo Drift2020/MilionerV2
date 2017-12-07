@@ -36,13 +36,16 @@ namespace Milioners
             _view.Quest += new EventHandler<EventArgs>(OnOkey);
             _view.NumderQuest += new EventHandler<EventArgs>(UpdateNumberQuest);
 
-            if(_c.Count()>0)
-            _model = _c.Element(0).Clone() as Question;
+            if (_c.Count() > 0)
+            {
+                _model = _c.Element(0).Clone() as Question;
+                _view.Max = _c.Count();
+                UpdateView();
+            }             
             else
-                _model = new Question();
+                _view.QuestionEmty_Edit();
 
-            _view.Max = _c.Count();
-            UpdateView();
+        
         }
 
         private void OnOkey(object sender, EventArgs e)

@@ -22,30 +22,18 @@ namespace Milioners
             set; get;
         }
         void Exitf();
-
+        bool StartGameQ{ set; get; }
         string Ansver { set; get; }
-        Button Start { set; get; }
-        Button ExitG { set; get; }
-        Button FlagS { set ; get;}
-        Button ExitS { set; get; }
-        Button StopS { set; get; }
-        Label QuestTableS { set; get; }
-        ListView NumberlistViewS { set; get; }
-        Button Ansver_AS { set; get; }
-        Button Ansver_BS { set; get; }
-        Button Ansver_CS { set; get; }
-        Button Ansver_DS { set; get; }
-        Button FandFS { set; get; }
-        Button HelpCallS { set; get; }
-        Button HelpRoomS { set; get; }
-        GroupBox HelpVariantS { set; get; }
-        void Error(string z, string s);
-        PictureBox CallPictureBoxS { set; get; }
-        Label CallLabelS { set; get; }
 
-        PictureBox AnsverPictureBoxS { set; get; }
-        Label AnsverLabelS { set; get; }
-        GroupBox HelpBarS { set; get; }
+        void SetColorNewElement(int number);
+        string Ansver_AS { set; get; }
+        string Ansver_BS { set; get; }
+        string Ansver_CS { set; get; }
+        string Ansver_DS { set; get; }
+        string Question { set; get; }
+        int NumberQuestion { set; get; }
+        void Error(string z, string s);
+     
 
     }
 }

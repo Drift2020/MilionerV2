@@ -13,12 +13,38 @@ namespace Milioners
     public delegate void MyDelegate();
     public partial class Form1 : Form, I_Global
     {
+        bool secondMenu=false;
         string[] money = new string[]{"100", "200",
             "300", "500", "1000",
             "2000","4000","8000","16000","32000","64000","125000","250000","500000","1000000"};
         public Form1()
         {         
            InitializeComponent();
+
+            if(secondMenu)
+            {
+
+            }
+            else
+            {
+                Flag.Visible = false;
+                Exit.Visible = false;
+                Stop.Visible = false;
+                CallPictureBox.Visible = false;
+                CallLabel.Visible = false;
+                HelpBar.Visible = false;
+                HelpVariant.Visible = false;
+                NumberlistView.Visible = false;
+                AnsverPictureBox.Visible = false;
+                AnsverLabel.Visible = false;
+                QuestTable.Visible = false;
+                Ansver_A.Visible = false;
+                Ansver_B.Visible = false;
+                Ansver_C.Visible = false;
+                Ansver_D.Visible = false;
+
+            }
+
         }
 
         public event EventHandler<EventArgs> StartGame;
@@ -32,30 +58,31 @@ namespace Milioners
         {
             set; get;
         }
-        public Button Start { set { button1 = value; }get { return button1; } }
-        public Button ExitG { set{button2=value;} get { return button2; }}
-        public Button FlagS { set { Flag = value; } get { return Flag; } }
-        public Button ExitS { set { Exit= value; } get { return Exit; } }
-        public Button StopS { set { Stop= value; } get { return Stop; } }
-        public Label QuestTableS { set { QuestTable= value; } get { return QuestTable; } }
-        public ListView NumberlistViewS { set { NumberlistView= value; } get { return NumberlistView; } }
-        public Button Ansver_AS { set { Ansver_A= value; } get { return Ansver_A; } }
-        public Button Ansver_BS { set { Ansver_B= value; } get { return Ansver_B; } }
-        public Button Ansver_CS { set { Ansver_C= value; } get { return Ansver_C;} }
-        public Button Ansver_DS { set { Ansver_D= value; } get { return Ansver_D ; } }
-        public Button FandFS { set { FandF= value; } get { return FandF; } }
-        public Button HelpCallS { set { HelpCall= value; } get { return HelpCall; } }
-        public Button HelpRoomS { set { HelpRoom= value; } get { return HelpRoom; } }
-        public GroupBox HelpVariantS { set { HelpVariant= value; } get { return HelpVariant; } }
+        public int NumberQuestion { set; get; }
+        public string Ansver_AS { set { Ansver_A.Text= value; } get { return Ansver_A.Text; } }
+        public string Ansver_BS { set { Ansver_B.Text = value; } get { return Ansver_B.Text; } }
+        public string Ansver_CS { set { Ansver_C.Text = value; } get { return Ansver_C.Text;} }
+        public string Ansver_DS { set { Ansver_D.Text = value; } get { return Ansver_D.Text; } }
 
-        public PictureBox CallPictureBoxS { set { CallPictureBox= value; } get { return CallPictureBox; } }
-        public Label CallLabelS { set { CallLabel = value; } get { return CallLabel; } }
 
-        public PictureBox AnsverPictureBoxS { set { AnsverPictureBox= value; } get { return AnsverPictureBox ; } }
-        public Label AnsverLabelS { set { AnsverLabel= value; } get { return AnsverLabel ; } }
-        public GroupBox HelpBarS { set { HelpBar= value; } get { return HelpBar; } }
+        public void SetColorNewElement(int number)
+        {
+            if(number==14)
+            {
+                NumberlistView.Items[number].BackColor = Color.Black;
+            }
+            else
+            {
+                NumberlistView.Items[number].BackColor = Color.Gold;
+                NumberlistView.Items[number+1].BackColor = Color.Black;
+            }
+        }
         public string Ansver { set; get; }
-
+        public string Question { set { QuestTable.Text = value; } get { return QuestTable.Text; } }
+        public bool StartGameQ
+        {
+            set { secondMenu = value; }get { return secondMenu; }
+        }
         public void Error(string z, string s)
         {
             MessageBox.Show(s, z, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -68,48 +95,75 @@ namespace Milioners
         private void button1_Click(object sender, EventArgs e)
         {
 
+            StartGame?.Invoke(this, EventArgs.Empty);
+            if (StartGameQ)
+            {
+               Ansver_A.Visible = true;
+               Ansver_B.Visible = true;
+               Ansver_C.Visible = true;
+               Ansver_D.Visible = true;
+               Flag.Visible = true;
+               Exit.Visible = true;
+               Stop.Visible = true;
+               QuestTable.Visible = true;
+               FandF.Visible = true;
+               HelpCall.Visible = true;
+               HelpRoom.Visible = true;
+               HelpVariant.Visible = true;
+                NumberlistView.Visible = true;
+
+                CallPictureBox.Visible = false;
+               CallLabel.Visible = false;
+               AnsverPictureBox.Visible = false;
+               AnsverLabel.Visible = false;
+               HelpBar.Visible = false;
+               Start.Visible = false;
+               ExitG.Visible = false;
+
+                NumberlistView.View = View.Details;
+
+                ColumnHeader columnHeader1 = new ColumnHeader();
+                // Укажем название столбца      
+                // Зададим выравнивание столбца
+                columnHeader1.TextAlign = HorizontalAlignment.Left;
+                // Установим ширину столбца
+                columnHeader1.Width = 70;
+
+                // Создаём второй столбец для табличного режима
+                ColumnHeader columnHeader2 = new ColumnHeader();
+                // Укажем название столбца
           
-
-            NumberlistViewS.View = View.Details;
-
-            ColumnHeader columnHeader1 = new ColumnHeader();
-            // Укажем название столбца      
-            // Зададим выравнивание столбца
-            columnHeader1.TextAlign = HorizontalAlignment.Left;
-            // Установим ширину столбца
-            columnHeader1.Width = 70;
-
-            // Создаём второй столбец для табличного режима
-            ColumnHeader columnHeader2 = new ColumnHeader();
-            // Укажем название столбца
-          
-            // Зададим выравнивание столбца
-            columnHeader2.TextAlign = HorizontalAlignment.Right;
-            // Установим ширину столбца
-            columnHeader2.Width = 100;
+                // Зададим выравнивание столбца
+                columnHeader2.TextAlign = HorizontalAlignment.Right;
+                // Установим ширину столбца
+                columnHeader2.Width = 100;
 
             
-            // Добавим столбцы в список
-            NumberlistViewS.FullRowSelect = true;
-            NumberlistViewS.Columns.Add(columnHeader1);
-            NumberlistViewS.Columns.Add(columnHeader2);
+                // Добавим столбцы в список
+                NumberlistView.FullRowSelect = true;
+                NumberlistView.Columns.Add(columnHeader1);
+                NumberlistView.Columns.Add(columnHeader2);
          
-            for (int count = 0; count < money.Length; count++)
-            {
+                for (int count = 0; count < money.Length; count++)
+                {
+                    // Создадим элемент списка, указав в конструкторе текст элемента списка
+                    ListViewItem listItem = new ListViewItem((14-count + 1).ToString());
 
-                // Создадим элемент списка, указав в конструкторе текст элемента списка
-                ListViewItem listItem = new ListViewItem((14-count + 1).ToString());
+                    // Для элемента списка зададим подэлемент (второй столбец в табличном представлении)
+                    if ((15- count) % 5 == 0)
+                        listItem.ForeColor = Color.Goldenrod;
+                    else
+                        listItem.ForeColor = Color.Yellow;
 
-                // Для элемента списка зададим подэлемент (второй столбец в табличном представлении)
-                listItem.SubItems.Add(money[14-count]);
-                // Созданный элемент списка присоединим к списку
-
-               
-
-                NumberlistViewS.Items.Add(listItem);
+                    listItem.SubItems.Add(money[14-count]);
+                    // Созданный элемент списка присоединим к списку
+              
+                    NumberlistView.Items.Add(listItem);
+                }
+                NumberQuestion = 14;
+                SetColorNewElement(NumberQuestion);
             }
-
-            StartGame?.Invoke(this, EventArgs.Empty);
+            
         }
 
         private void CreatQvest_Click(object sender, EventArgs e)
@@ -133,11 +187,16 @@ namespace Milioners
 
             P_Edit loginPresenter = new P_Edit(Add_Edit_form);
 
-           // _view.ShowDialog = Add_Edit_form.ShowDialog().ToString();
+            // _view.ShowDialog = Add_Edit_form.ShowDialog().ToString();
             //EditQuestion?.Invoke(this, EventArgs.Empty);
-            if (Add_Edit_form.ShowDialog() == DialogResult.OK)
+            DialogResult resalt = Add_Edit_form.ShowDialog();
+            if (resalt == DialogResult.OK)
             {
                 MessageBox.Show("Вопрос создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if(resalt == DialogResult.Cancel)
+            {
+                MessageBox.Show("Лист вопросов пуст", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -162,19 +221,26 @@ namespace Milioners
 
         private void Exit_tolbar_Click(object sender, EventArgs e)
         {
+            DialogResult resalt = MessageBox.Show("Точно хотите выйти?", "Выход", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if(resalt== DialogResult.OK)
+            Close();
 
-            ExitGame?.Invoke(this, EventArgs.Empty);
-
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            DialogResult resalt = MessageBox.Show("Точно хотите выйти?", "Выход", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (resalt == DialogResult.OK)
+                Close();
 
-            ExitGame?.Invoke(this, EventArgs.Empty);
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
+            DialogResult resalt = MessageBox.Show("Точно хотите выйти?", "Выход", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (resalt == DialogResult.OK)
+                Close();
 
         }
         private void AnsverClic(object sender, EventArgs e)
@@ -182,10 +248,16 @@ namespace Milioners
 
             Button temp = sender as Button;
             Ansver = temp.Text;
+            
             AnsverClick?.Invoke(this, EventArgs.Empty);
 
         }
 
-   
+        private void Exit_tolbar_Click(object sender, FormClosingEventArgs e)
+        {
+          
+            ExitGame?.Invoke(this, EventArgs.Empty);
+           
+        }
     }
 }

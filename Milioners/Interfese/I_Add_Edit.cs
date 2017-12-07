@@ -25,6 +25,7 @@ namespace Milioners
 
         void Acsept_Add();
         void Dont_Add();
+        void QuestionEmty_Edit();
 
         void Acsept_Edit();
         void Dont_Edit();

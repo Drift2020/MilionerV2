@@ -16,7 +16,7 @@ namespace Milioners
         public void Save(ICollection<Question> collection)
         {
            
-                stream = new FileStream("../../list.xml", FileMode.Create);
+            stream = new FileStream("../../list.xml", FileMode.Create);
             serializer = new XmlSerializer(typeof(List<Question>));
             serializer.Serialize(stream, collection);
             stream.Close();
@@ -40,6 +40,7 @@ namespace Milioners
             stream.Close();
             return new List<Question>();
         }
+        
     }
 }
 //bool ferst = true;

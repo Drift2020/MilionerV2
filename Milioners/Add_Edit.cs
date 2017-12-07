@@ -101,7 +101,10 @@ namespace Milioners
             MessageBox.Show("Ошибка при заполнении поля.", "Изменение вопроса",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
+        public void QuestionEmty_Edit()
+        {
+            DialogResult = DialogResult.Cancel;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             Quest?.Invoke(this, EventArgs.Empty);

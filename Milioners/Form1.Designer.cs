@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Start = new System.Windows.Forms.Button();
+            this.ExitG = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItem0 = new System.Windows.Forms.ToolStripMenuItem();
             this.начатьИгруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,25 +77,25 @@
             this.HelpBar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // Start
             // 
-            this.button1.Location = new System.Drawing.Point(294, 197);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 58);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Начать игру";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Start.Location = new System.Drawing.Point(294, 197);
+            this.Start.Name = "Start";
+            this.Start.Size = new System.Drawing.Size(188, 58);
+            this.Start.TabIndex = 1;
+            this.Start.Text = "Начать игру";
+            this.Start.UseVisualStyleBackColor = true;
+            this.Start.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // ExitG
             // 
-            this.button2.Location = new System.Drawing.Point(294, 343);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 58);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Выход";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ExitG.Location = new System.Drawing.Point(294, 343);
+            this.ExitG.Name = "ExitG";
+            this.ExitG.Size = new System.Drawing.Size(188, 58);
+            this.ExitG.TabIndex = 2;
+            this.ExitG.Text = "Выход";
+            this.ExitG.UseVisualStyleBackColor = true;
+            this.ExitG.Click += new System.EventHandler(this.button2_Click);
             // 
             // menuStrip1
             // 
@@ -478,12 +478,13 @@
             // 
             // NumberlistView
             // 
+            this.NumberlistView.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.NumberlistView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NumberlistView.FullRowSelect = true;
-            this.NumberlistView.Location = new System.Drawing.Point(540, 98);
+            this.NumberlistView.Location = new System.Drawing.Point(541, 74);
             this.NumberlistView.Margin = new System.Windows.Forms.Padding(10);
             this.NumberlistView.Name = "NumberlistView";
-            this.NumberlistView.Size = new System.Drawing.Size(203, 448);
+            this.NumberlistView.Size = new System.Drawing.Size(203, 485);
             this.NumberlistView.TabIndex = 22;
             this.NumberlistView.UseCompatibleStateImageBehavior = false;
             this.NumberlistView.View = System.Windows.Forms.View.Details;
@@ -510,14 +511,15 @@
             this.Controls.Add(this.Stop);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.Flag);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ExitG);
+            this.Controls.Add(this.Start);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Миллионер";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit_tolbar_Click);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.HelpVariant.ResumeLayout(false);
@@ -533,8 +535,8 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Start;
+        private System.Windows.Forms.Button ExitG;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem0;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem1;
