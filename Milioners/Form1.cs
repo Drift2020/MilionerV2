@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Milioners
 {
@@ -18,7 +19,10 @@ namespace Milioners
         bool win = false;
         bool lose = false;
         bool secondMenu=false;
-        System.Timers.Timer TimeWindow;
+        float NowTime = 0;
+        float EndTime = 40;
+       
+        Button ClicNow;
         int numberQuestion = 0;
         string[] money = new string[]{"100", "200",
             "300", "500", "1000",
@@ -27,13 +31,12 @@ namespace Milioners
         {         
            InitializeComponent();
 
-            TimeWindow = new System.Timers.Timer();
-            TimeWindow.Interval = 100;
-
+         
+           
             // public event ElapsedEventHandler Elapsed - это событие происходит по истечении интервала времени
-            TimeWindow.Elapsed += new ElapsedEventHandler(OnTick);
-
-           // Начинает вызывать событие Elapsed
+            TimeWindow.Tick += new EventHandler(OnTick);
+            TimeRed.Tick += new ElapsedEventHandler(OnTickRed);
+            // Начинает вызывать событие Elapsed
 
 
             if (secondMenu)
@@ -69,6 +72,7 @@ namespace Milioners
         public event EventHandler<EventArgs> ExitGame;
         public event EventHandler<EventArgs> StopGame;
         public event EventHandler<EventArgs> AnsverClick;
+        ////////////////////////////////////////////////////////////////
         public string ShowDialog
         {
             set; get;
@@ -80,14 +84,33 @@ namespace Milioners
         public string Ansver_DS { set { Ansver_D.Text = value; } get { return Ansver_D.Text; } }
         public bool Win { set { win = value; } get { return lose; } }
         public bool Lose { set { lose = value; } get { return lose; } }
+        public void OnTickRed(object sender, EventArgs e)
+        {
+            
+            if(ClicNow.BackColor==Color.Black)
+            {
+                ClicNow.BackColor = Color.Red;
+            }
+            else
+            {
+                ClicNow.BackColor = Color.Black;
+            }
+            if (NowTime >= EndTime)
+            {
 
+                ClicNow.BackColor = Color.Black;
+                TimeRed.Stop();
+            }
+        }
         public void OnTick(object sender, EventArgs e)
         {
-            progressBar1.Value += 10;
-            if (progressBar1.Value == progressBar1.Maximum)
+            NowTime += 1;
+
+            if (NowTime >= EndTime)
             {
-                TimeWindow.Stop();
+                SecondWindow(false);
                 Start_Window(true);
+                TimeWindow.Stop();              
             }
         }
         public void SetColorNewElement(int number)
@@ -104,6 +127,9 @@ namespace Milioners
         }
         public string Ansver { set; get; }
         public string Question { set { QuestTable.Text = value; } get { return QuestTable.Text; } }
+        
+         ////////////////////////////////////////////////////////////////
+       
         public bool StartGameQ
         {
             set { secondMenu = value; }get { return secondMenu; }
@@ -116,25 +142,33 @@ namespace Milioners
         {
             Close();
         }
+        private void SecondWindow(bool t)
+        {
+            StartGameQ = t;
+            Ansver_A.Visible = t;
+            Ansver_B.Visible = t;
+            Ansver_C.Visible = t;
+            Ansver_D.Visible = t;
+            Flag.Visible = t;
+            Exit.Visible = t;
+            Stop.Visible = t;
+            QuestTable.Visible = t;
+            FandF.Visible = t;
+            HelpCall.Visible = t;
+            HelpRoom.Visible = t;
+            HelpVariant.Visible = t;
+            NumberlistView.Visible = t;
+        }
         private void LoseGame()
         {
-            StartGameQ = false;
-            Ansver_A.Visible = false;
-            Ansver_B.Visible = false;
-            Ansver_C.Visible = false;
-            Ansver_D.Visible = false;
-            Flag.Visible = false;
-            Exit.Visible = false;
-            Stop.Visible = false;
-            QuestTable.Visible = false;
-            FandF.Visible = false;
-            HelpCall.Visible = false;
-            HelpRoom.Visible = false;
-            HelpVariant.Visible = false;
-            NumberlistView.Visible = false;
-
-
            
+
+            TimeWindow.Start();
+            TimeRed.Start();
+            SoundPlayer player = new SoundPlayer("../../Resurses/sound/false.wav");
+            // player.SoundLocation = "../../sound.wav";
+            player.Play();
+          
         }
         private void Start_Window(bool t)
         {
@@ -292,27 +326,30 @@ namespace Milioners
         }
         private void AnsverClic(object sender, EventArgs e)
         {
+            if (!win && !lose)
+            {
+                Button temp = ClicNow = sender as Button;
+                Ansver = temp.Text;
 
-            Button temp = sender as Button;
-            Ansver = temp.Text;
-            
-            AnsverClick?.Invoke(this, EventArgs.Empty);
-          
-            if(win)
-            {
-                win = false;
+                AnsverClick?.Invoke(this, EventArgs.Empty);
+
+                if (win)
+                {
+                    win = false;
+                }
+                else if (lose)
+                {
+                    LoseGame();
+                    lose = false;
+                }
+                SetColorNewElement(numberQuestion);
             }
-            else if(lose)
-            {
-                LoseGame();
-                lose = false;
-            }
-            SetColorNewElement(numberQuestion);
         }
 
         private void Exit_tolbar_Click(object sender, FormClosingEventArgs e)
         {
-          
+            TimeWindow.Stop();
+            TimeRed.Stop();
             ExitGame?.Invoke(this, EventArgs.Empty);
            
         }

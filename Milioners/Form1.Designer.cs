@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Start = new System.Windows.Forms.Button();
             this.ExitG = new System.Windows.Forms.Button();
@@ -69,6 +70,8 @@
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.NumberlistView = new System.Windows.Forms.ListView();
+            this.TimeWindow = new System.Windows.Forms.Timer(this.components);
+            this.TimeRed = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.HelpVariant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AnsverPictureBox)).BeginInit();
@@ -533,7 +536,8 @@
         }
 
         #endregion
-
+       
+      
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Button ExitG;
@@ -574,6 +578,8 @@
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ListView NumberlistView;
+        private System.Windows.Forms.Timer TimeWindow;
+        private System.Windows.Forms.Timer TimeRed;
     }
 }
 
