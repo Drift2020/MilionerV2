@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace Milioners
@@ -13,7 +15,11 @@ namespace Milioners
     public delegate void MyDelegate();
     public partial class Form1 : Form, I_Global
     {
+        bool win = false;
+        bool lose = false;
         bool secondMenu=false;
+        System.Timers.Timer TimeWindow;
+        int numberQuestion = 0;
         string[] money = new string[]{"100", "200",
             "300", "500", "1000",
             "2000","4000","8000","16000","32000","64000","125000","250000","500000","1000000"};
@@ -21,7 +27,16 @@ namespace Milioners
         {         
            InitializeComponent();
 
-            if(secondMenu)
+            TimeWindow = new System.Timers.Timer();
+            TimeWindow.Interval = 100;
+
+            // public event ElapsedEventHandler Elapsed - это событие происходит по истечении интервала времени
+            TimeWindow.Elapsed += new ElapsedEventHandler(OnTick);
+
+           // Начинает вызывать событие Elapsed
+
+
+            if (secondMenu)
             {
 
             }
@@ -58,18 +73,28 @@ namespace Milioners
         {
             set; get;
         }
-        public int NumberQuestion { set; get; }
+        public int NumberQuestion { set { numberQuestion = value; } get { return numberQuestion; } }
         public string Ansver_AS { set { Ansver_A.Text= value; } get { return Ansver_A.Text; } }
         public string Ansver_BS { set { Ansver_B.Text = value; } get { return Ansver_B.Text; } }
         public string Ansver_CS { set { Ansver_C.Text = value; } get { return Ansver_C.Text;} }
         public string Ansver_DS { set { Ansver_D.Text = value; } get { return Ansver_D.Text; } }
+        public bool Win { set { win = value; } get { return lose; } }
+        public bool Lose { set { lose = value; } get { return lose; } }
 
-
+        public void OnTick(object sender, EventArgs e)
+        {
+            progressBar1.Value += 10;
+            if (progressBar1.Value == progressBar1.Maximum)
+            {
+                TimeWindow.Stop();
+                Start_Window(true);
+            }
+        }
         public void SetColorNewElement(int number)
         {
             if(number==14)
             {
-                NumberlistView.Items[number].BackColor = Color.Black;
+                NumberlistView.Items[number].BackColor = Color.Gold;
             }
             else
             {
@@ -91,7 +116,36 @@ namespace Milioners
         {
             Close();
         }
-        
+        private void LoseGame()
+        {
+            StartGameQ = false;
+            Ansver_A.Visible = false;
+            Ansver_B.Visible = false;
+            Ansver_C.Visible = false;
+            Ansver_D.Visible = false;
+            Flag.Visible = false;
+            Exit.Visible = false;
+            Stop.Visible = false;
+            QuestTable.Visible = false;
+            FandF.Visible = false;
+            HelpCall.Visible = false;
+            HelpRoom.Visible = false;
+            HelpVariant.Visible = false;
+            NumberlistView.Visible = false;
+
+
+           
+        }
+        private void Start_Window(bool t)
+        {
+            CallPictureBox.Visible = t;
+            CallLabel.Visible = t;
+            AnsverPictureBox.Visible = t;
+            AnsverLabel.Visible = t;
+            HelpBar.Visible = t;
+            Start.Visible = t;
+            ExitG.Visible = t;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -110,15 +164,9 @@ namespace Milioners
                HelpCall.Visible = true;
                HelpRoom.Visible = true;
                HelpVariant.Visible = true;
-                NumberlistView.Visible = true;
+               NumberlistView.Visible = true;
 
-                CallPictureBox.Visible = false;
-               CallLabel.Visible = false;
-               AnsverPictureBox.Visible = false;
-               AnsverLabel.Visible = false;
-               HelpBar.Visible = false;
-               Start.Visible = false;
-               ExitG.Visible = false;
+                Start_Window(false);
 
                 NumberlistView.View = View.Details;
 
@@ -141,6 +189,7 @@ namespace Milioners
             
                 // Добавим столбцы в список
                 NumberlistView.FullRowSelect = true;
+                NumberlistView.Columns.Clear();
                 NumberlistView.Columns.Add(columnHeader1);
                 NumberlistView.Columns.Add(columnHeader2);
          
@@ -160,6 +209,7 @@ namespace Milioners
               
                     NumberlistView.Items.Add(listItem);
                 }
+
                 NumberQuestion = 14;
                 SetColorNewElement(NumberQuestion);
             }
@@ -194,10 +244,7 @@ namespace Milioners
             {
                 MessageBox.Show("Вопрос создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if(resalt == DialogResult.Cancel)
-            {
-                MessageBox.Show("Лист вопросов пуст", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
         }
 
         private void Dell_Question_Click(object sender, EventArgs e)
@@ -250,7 +297,17 @@ namespace Milioners
             Ansver = temp.Text;
             
             AnsverClick?.Invoke(this, EventArgs.Empty);
-
+          
+            if(win)
+            {
+                win = false;
+            }
+            else if(lose)
+            {
+                LoseGame();
+                lose = false;
+            }
+            SetColorNewElement(numberQuestion);
         }
 
         private void Exit_tolbar_Click(object sender, FormClosingEventArgs e)

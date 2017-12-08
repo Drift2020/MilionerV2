@@ -24,8 +24,8 @@ namespace Milioners
         void Exitf();
         bool StartGameQ{ set; get; }
         string Ansver { set; get; }
-
-        void SetColorNewElement(int number);
+        bool Win { set; get; }
+        bool Lose { set; get; }
         string Ansver_AS { set; get; }
         string Ansver_BS { set; get; }
         string Ansver_CS { set; get; }
