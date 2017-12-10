@@ -13,25 +13,29 @@ namespace Milioners
         event EventHandler<EventArgs> ExitGame;
         event EventHandler<EventArgs> StopGame;
         event EventHandler<EventArgs> AnsverClick;
-        event EventHandler<EventArgs> NewQuestion;
-        event EventHandler<EventArgs> EditQuestion;
-        event EventHandler<EventArgs> DellQuestion;
 
+
+
+        event EventHandler<EventArgs> UpdateViewQuestion;
+        event EventHandler<EventArgs> FiftyOnFifty;
         string ShowDialog
         {
             set; get;
         }
-        void Exitf();
+       
         bool StartGameQ{ set; get; }
         string Ansver { set; get; }
         bool Win { set; get; }
         bool Lose { set; get; }
+        bool AnsverTrue { set; get; }
+        bool IsFandF { set; get; }
         string Ansver_AS { set; get; }
         string Ansver_BS { set; get; }
         string Ansver_CS { set; get; }
         string Ansver_DS { set; get; }
         string Question { set; get; }
         int NumberQuestion { set; get; }
+        float NowTime { set; get; }
         void Error(string z, string s);
      
 

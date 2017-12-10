@@ -71,7 +71,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.NumberlistView = new System.Windows.Forms.ListView();
             this.TimeWindow = new System.Windows.Forms.Timer(this.components);
-            this.TimeRed = new System.Windows.Forms.Timer(this.components);
+            this.TimeColor = new System.Windows.Forms.Timer(this.components);
+            this.TimeTrueAnsver = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.HelpVariant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AnsverPictureBox)).BeginInit();
@@ -199,6 +200,7 @@
             this.Stop.TabIndex = 6;
             this.Stop.Text = "Стоп";
             this.Stop.UseVisualStyleBackColor = false;
+            this.Stop.Click += new System.EventHandler(this.Stop_Click);
             // 
             // QuestTable
             // 
@@ -274,6 +276,7 @@
             this.Ansver_D.Text = "button6";
             this.Ansver_D.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Ansver_D.UseVisualStyleBackColor = false;
+            this.Ansver_D.Click += new System.EventHandler(this.AnsverClic);
             // 
             // HelpVariant
             // 
@@ -300,6 +303,7 @@
             this.FandF.Size = new System.Drawing.Size(53, 33);
             this.FandF.TabIndex = 8;
             this.FandF.UseVisualStyleBackColor = false;
+            this.FandF.Click += new System.EventHandler(this.FandF_Click);
             // 
             // HelpCall
             // 
@@ -377,6 +381,7 @@
             this.Flag.Size = new System.Drawing.Size(62, 32);
             this.Flag.TabIndex = 4;
             this.Flag.UseVisualStyleBackColor = false;
+            this.Flag.Click += new System.EventHandler(this.Flag_Click);
             // 
             // pictureBox1
             // 
@@ -579,7 +584,8 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ListView NumberlistView;
         private System.Windows.Forms.Timer TimeWindow;
-        private System.Windows.Forms.Timer TimeRed;
+        private System.Windows.Forms.Timer TimeColor;
+        private System.Windows.Forms.Timer TimeTrueAnsver;
     }
 }
 

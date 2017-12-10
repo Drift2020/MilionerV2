@@ -26,8 +26,8 @@ namespace Milioners
             _view.ExitGame += new EventHandler<EventArgs>(ExitGame);
             _view.StopGame += new EventHandler<EventArgs>(StopGame);
             _view.AnsverClick += new EventHandler<EventArgs>(AnsverClic);
-
-
+            _view.UpdateViewQuestion += new EventHandler<EventArgs>(UpdateViewQuestion);
+            _view.FiftyOnFifty += new EventHandler<EventArgs>(FiftyOnFifty);
             // UpdateView();
         }
         private void RandomAnsver()
@@ -37,22 +37,12 @@ namespace Milioners
             int rand = j.Next(0, 3);
             int[,] list_rand = new int[4, 4] { { 3, 2,0,1 }, { 1,3,0,2 }, { 2,0,1,3 },{2,1,3,0 } };
 
-
-
             _view.Ansver_AS = SetAnsver(_view.Ansver_AS, list_rand[rand,0]);
             _view.Ansver_BS = SetAnsver(_view.Ansver_BS, list_rand[rand,1]);
             _view.Ansver_CS = SetAnsver(_view.Ansver_CS, list_rand[rand,2]);
-            _view.Ansver_DS = SetAnsver(_view.Ansver_DS, list_rand[rand,3]);
-            //_view.Ansver_AS = c1.Element(numberQuestion).Answer_1;
-
-            //_view.Ansver_BS = c1.Element(numberQuestion).Answer_2;
-
-            //_view.Ansver_CS = c1.Element(numberQuestion).Answer_3;
-
-            //_view.Ansver_DS = c1.Element(numberQuestion).Answer_4;
-
+            _view.Ansver_DS = SetAnsver(_view.Ansver_DS, list_rand[rand,3]);       
         }
-       private string SetAnsver(string vs, int n)
+        private string SetAnsver(string vs, int n)
        {
             switch(n){
                 case 0:
@@ -70,6 +60,12 @@ namespace Milioners
             }
             return vs;
        }
+        private void UpdateViewQuestion(object sender, EventArgs e)
+        {
+            
+            UpdateView();
+            
+        }
         private void StartGame(object sender, EventArgs e)
         {
             try
@@ -126,9 +122,10 @@ namespace Milioners
                     }
                     else
                     {
+                        _view.AnsverTrue = true;
                         ++numberQuestion;
                         --_view.NumberQuestion;
-                        UpdateView();
+                        
                     }
                 }
                 else
@@ -150,7 +147,38 @@ namespace Milioners
         {
 
         }
+        /// <summary>
+        /// /////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FiftyOnFifty(object sender, EventArgs e)
+        {
+            bool ferst = false ,second  = false;
+            Random r = new Random();
+            int number=r.Next(0, 3);
 
+            while(ferst||second)
+            {
+                switch (number)
+                {
+                    case 0:
+
+                        break;
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+
+                        break;
+                }
+
+                c1.Element(numberQuestion).Answer_1
+            }
+        }
         private void UpdateView()
         {
             try
