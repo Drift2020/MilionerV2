@@ -20,7 +20,6 @@ namespace Milioners
         bool trueAnsver = false;
         bool lose = false;
         bool secondMenu = false;
-
         bool isFandF = false;
 
         float nowTime = 0;
@@ -35,14 +34,12 @@ namespace Milioners
         {
             InitializeComponent();
 
-
-
             // public event ElapsedEventHandler Elapsed - это событие происходит по истечении интервала времени
             TimeWindow.Tick += new EventHandler(OnTick);
             TimeColor.Tick += new EventHandler(OnTickColor);
             TimeTrueAnsver.Tick += new EventHandler(OnTickTrue);
+            TimeCallHelp.Tick += new EventHandler(OnTickCallHelp);
             // Начинает вызывать событие Elapsed
-
 
             if (secondMenu)
             {
@@ -65,7 +62,6 @@ namespace Milioners
                 Ansver_B.Visible = false;
                 Ansver_C.Visible = false;
                 Ansver_D.Visible = false;
-
             }
 
         }
@@ -74,12 +70,14 @@ namespace Milioners
 
         public event EventHandler<EventArgs> ExitGame;
         public event EventHandler<EventArgs> StopGame;
-
+        public event EventHandler<EventArgs> CallHelp;
         public event EventHandler<EventArgs> FiftyOnFifty;
         public event EventHandler<EventArgs> AnsverClick;
         public event EventHandler<EventArgs> UpdateViewQuestion;
-
+        public event EventHandler<EventArgs> ZalHelp;
         ////////////////////////////////////////////////////////////////
+        public int FerstFonF { set; get; }
+        public int SecondFonF { set; get; }
         public string ShowDialog {set; get;}
         public float NowTime { set { nowTime = value; } get { return nowTime; } }
         public int NumberQuestion { set { numberQuestion = value; } get { return numberQuestion; } }
@@ -87,25 +85,25 @@ namespace Milioners
         public string Ansver_BS { set { Ansver_B.Text = value; } get { return Ansver_B.Text; } }
         public string Ansver_CS { set { Ansver_C.Text = value; } get { return Ansver_C.Text; } }
         public string Ansver_DS { set { Ansver_D.Text = value; } get { return Ansver_D.Text; } }
+
+        public int Ansver_AP { set; get; }
+        public int Ansver_BP { set; get; }
+        public int Ansver_CP { set; get; }
+        public int Ansver_DP { set; get; }
+
+        public string Ansver { set; get; }
+        public string Question { set { QuestTable.Text = value; } get { return QuestTable.Text; } }
         public bool Win { set { win = value; } get { return lose; } }
         public bool Lose { set { lose = value; } get { return lose; } }
         public bool AnsverTrue { set { trueAnsver = value; } get { return trueAnsver; } }
-        public bool IsFandF { set { isFandF = value; } get { return isFandF; } }
-        public string Ansver { set; get; }
-        public string Question { set { QuestTable.Text = value; } get { return QuestTable.Text; } }
+        public bool IsFandF { set { isFandF = value; } get { return isFandF; } }   
         public bool StartGameQ { set { secondMenu = value; } get { return secondMenu; } }
+        public bool IsCall { set; get; }
+        public bool IsHelpRoom { set; get; }
         ////////////////////////////////////////////////////////////////
         public void OnTickColor(object sender, EventArgs e)
         {
 
-            if (ClicNow.BackColor == Color.Black)
-            {
-                ClicNow.BackColor = butColor;
-            }
-            else
-            {
-                ClicNow.BackColor = Color.Black;
-            }
             if (NowTime >= EndTime)
             {
                 NowTime = 0;
@@ -113,6 +111,15 @@ namespace Milioners
                 ClicNow.BackColor = Color.Black;
                 TimeColor.Stop();
             }
+            else if (ClicNow.BackColor == Color.Black)
+            {
+                ClicNow.BackColor = butColor;
+            }
+            else
+            {
+                ClicNow.BackColor = Color.Black;
+            }
+            
         }
         public void OnTick(object sender, EventArgs e)
         {
@@ -147,6 +154,21 @@ namespace Milioners
                 
             }
         }
+        public void OnTickCallHelp(object sender, EventArgs e)
+        {
+            NowTime += 1;
+            if(NowTime>=EndTime/2&&CallPictureBox.Visible==false)
+            {
+                CallLableGroup(true, Ansver);
+            }
+            if (NowTime >= EndTime)
+            {
+                CallLableGroup(false, "");
+                TimeCallHelp.Stop();
+                NowTime = 0;
+            }
+        }
+     
         ////////////////////////////////////////////////////////////////
         public void SetColorNewElement(int number)
         {
@@ -209,6 +231,12 @@ namespace Milioners
            
 
         }
+        private void AnsverBoxPicture(bool isTrue, string text)
+        {
+            AnsverPictureBox.Visible = isTrue;
+            AnsverLabel.Visible = isTrue;
+            AnsverLabel.Text = text;
+        }
         ////////////////////////////////////////////////////////////////
         private void Start_Window(bool t)
         {
@@ -216,19 +244,23 @@ namespace Milioners
             Start.Visible = t;
             ExitG.Visible = t;
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void StartGames(object sender, EventArgs e)
         {
 
             StartGame?.Invoke(this, EventArgs.Empty);
             if (StartGameQ)
             {
+                FiftyOnFiftyImage(true);
+
                 SoundPlayer player = new SoundPlayer("../../Resurses/sound/gong.wav");
-                player.Play();
+                isFandF = true;
+                IsCall = true;
+                player.Play();               
                 win = false;
                 lose = false;
                 NowTime = 0;
                 SecondWindow(true);
-
+                CAllHelpImage(true);
                 Start_Window(false);
                 NumberlistView.Clear();
                 NumberlistView.View = View.Details;
@@ -297,10 +329,6 @@ namespace Milioners
         }
         //////////////////////////////////////////////////////////////
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
         //////////////////////////////////////////////////////////////
         private void Exit_tolbar_Click(object sender, EventArgs e)
         {
@@ -335,8 +363,7 @@ namespace Milioners
                 Close();
 
         }
-
-
+        //////////////////////////////////////////////////////////////
         private void AnsverClic(object sender, EventArgs e)
         {
             if (!win && !lose && !trueAnsver)
@@ -357,16 +384,13 @@ namespace Milioners
                 else if (trueAnsver)
                 {
                     TrueAnsver();
+                    VisibleButtonAnsver(true);
                 }
               
             }
-        }
-        private void AnsverBoxPicture(bool isTrue, string text)
-        {
-            AnsverPictureBox.Visible = isTrue;
-            AnsverLabel.Visible = isTrue;
-            AnsverLabel.Text = text;
-        }
+        }      
+
+        //////////////////////////////////////////////////////////////
         private void Stop_Click(object sender, EventArgs e)
         {
             if (!win && !lose && !trueAnsver)
@@ -381,13 +405,129 @@ namespace Milioners
 
             }
         }
-
+        //////////////////////////////////////////////////////////////           
+        private void VisibleButtonAnsver(bool isTrue)
+        {
+           
+          Ansver_A.Visible = isTrue;            
+          Ansver_B.Visible = isTrue;          
+          Ansver_C.Visible = isTrue;           
+          Ansver_D.Visible = isTrue;
+        }
+        //////////////////////////////////////////////////////////////
         private void FandF_Click(object sender, EventArgs e)
         {
             if(isFandF)
             {
                 FiftyOnFifty?.Invoke(this, EventArgs.Empty);
+                switch(FerstFonF)
+                {
+                    case 0:
+                        Ansver_A.Visible = false;
+                        break;
+                    case 1:
+                        Ansver_B.Visible = false;
+                        break;
+                    case 2:
+                        Ansver_C.Visible = false;
+                        break;
+                    case 3:
+                        Ansver_D.Visible = false;
+                        break;
+                }
+                switch (SecondFonF)
+                {
+                    case 0:
+                        Ansver_A.Visible = false;
+                        break;
+                    case 1:
+                        Ansver_B.Visible = false;
+                        break;
+                    case 2:
+                        Ansver_C.Visible = false;
+                        break;
+                    case 3:
+                        Ansver_D.Visible = false;
+                        break;
+                }
+
+               
+                FiftyOnFiftyImage(false);
             }           
         }
+        private void FiftyOnFiftyImage(bool isTrue)
+        {
+            if (isTrue)
+            {
+                FandF.Image = Image.FromFile("../../Resurses/Image/1.jpg");
+                isFandF = isTrue;
+            }
+            else
+            {
+                FandF.Image = Image.FromFile("../../Resurses/Image/4.jpg");
+                isFandF = isTrue;
+            }
+            SecondFonF = FerstFonF = 5;
+        }
+        //////////////////////////////////////////////////////////////
+        private void HelpCall_Click(object sender, EventArgs e)
+        {
+            if(IsCall)
+            {
+                CallHelp?.Invoke(this, EventArgs.Empty);
+
+                SoundPlayer player = new SoundPlayer("../../Resurses/sound/zvonok.wav");
+                player.Play();
+
+                CAllHelpImage(false);
+                TimeCallHelp.Start();
+                IsCall = false;
+            }
+        }
+        private void CallLableGroup(bool isTrue, string text)
+        {
+            CallPictureBox.Visible = isTrue;
+            CallLabel.Visible = isTrue;
+            CallLabel.Text = ("Я думаю это " + text + ".");
+        }
+        private void CAllHelpImage(bool isTrue)
+        {
+            if (isTrue)
+            {
+                HelpCall.Image = Image.FromFile("../../Resurses/Image/2.jpg");
+
+            }
+            else
+            {
+                HelpCall.Image = Image.FromFile("../../Resurses/Image/5.jpg");
+
+            }
+
+        }
+        //////////////////////////////////////////////////////////////
+        private void HelpRoom_Click(object sender, EventArgs e)
+        {
+            if(IsHelpRoom)
+            {
+                ZalHelp?.Invoke(this, EventArgs.Empty);
+
+            }
+        }
+        private void GroupRoomHelp(bool isTrue)
+        {
+            HelpBar.Visible = isTrue;
+        }
+        public void OnTickHelpRoom(object sender, EventArgs e)
+        {
+            NowTime += 1;
+
+            if (NowTime >= EndTime)
+            {
+
+                NowTime = 0;
+            }
+        }
+
+
     }
 }

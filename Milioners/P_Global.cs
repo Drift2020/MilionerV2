@@ -28,6 +28,7 @@ namespace Milioners
             _view.AnsverClick += new EventHandler<EventArgs>(AnsverClic);
             _view.UpdateViewQuestion += new EventHandler<EventArgs>(UpdateViewQuestion);
             _view.FiftyOnFifty += new EventHandler<EventArgs>(FiftyOnFifty);
+            _view.CallHelp += new EventHandler<EventArgs>(CallHelp);
             // UpdateView();
         }
         private void RandomAnsver()
@@ -60,6 +61,10 @@ namespace Milioners
             }
             return vs;
        }
+        private void CallHelp(object sender, EventArgs e)
+        {
+            _view.Ansver = c1.Element(numberQuestion).Answer_1;
+        }
         private void UpdateViewQuestion(object sender, EventArgs e)
         {
             
@@ -154,29 +159,73 @@ namespace Milioners
         /// <param name="e"></param>
         private void FiftyOnFifty(object sender, EventArgs e)
         {
-            bool ferst = false ,second  = false;
+          
             Random r = new Random();
             int number=r.Next(0, 3);
 
-            while(ferst||second)
+            while(_view.FerstFonF==5|| _view.SecondFonF == 5)
             {
                 switch (number)
                 {
                     case 0:
-
+                        if (_view.Ansver_AS == c1.Element(numberQuestion).Answer_1)
+                        {
+                            number = r.Next(0, 3);
+                        }
+                        else if(_view.FerstFonF == 5)
+                        {
+                            _view.FerstFonF = number;
+                        }
+                        else if (_view.SecondFonF == 5 && _view.FerstFonF!= number)
+                        {
+                            _view.SecondFonF = number;
+                        }
                         break;
                     case 1:
-
+                        if (_view.Ansver_BS == c1.Element(numberQuestion).Answer_1)
+                        {
+                            number = r.Next(0, 3);
+                        }
+                        else if (_view.FerstFonF == 5)
+                        {
+                            _view.FerstFonF = number;
+                        }
+                        else if (_view.SecondFonF == 5 && _view.FerstFonF != number)
+                        {
+                            _view.SecondFonF = number;
+                        }
                         break;
                     case 2:
-
+                        if (_view.Ansver_CS == c1.Element(numberQuestion).Answer_1)
+                        {
+                            number = r.Next(0, 3);
+                        }
+                        else if (_view.FerstFonF == 5)
+                        {
+                            _view.FerstFonF = number;
+                        }
+                        else if (_view.SecondFonF == 5 && _view.FerstFonF != number)
+                        {
+                            _view.SecondFonF = number;
+                        }
                         break;
                     case 3:
-
+                        if (_view.Ansver_DS == c1.Element(numberQuestion).Answer_1)
+                        {
+                            number = r.Next(0, 3);
+                        }
+                        else if (_view.FerstFonF == 5)
+                        {
+                            _view.FerstFonF = number;
+                        }
+                        else if (_view.SecondFonF == 5 && _view.FerstFonF != number)
+                        {
+                            _view.SecondFonF = number;
+                        }
                         break;
                 }
+                number = r.Next(0, 3);
 
-                c1.Element(numberQuestion).Answer_1
             }
         }
         private void UpdateView()

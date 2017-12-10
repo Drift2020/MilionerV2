@@ -13,8 +13,8 @@ namespace Milioners
         event EventHandler<EventArgs> ExitGame;
         event EventHandler<EventArgs> StopGame;
         event EventHandler<EventArgs> AnsverClick;
-
-
+        event EventHandler<EventArgs> CallHelp;
+        event EventHandler<EventArgs> ZalHelp;
 
         event EventHandler<EventArgs> UpdateViewQuestion;
         event EventHandler<EventArgs> FiftyOnFifty;
@@ -29,6 +29,14 @@ namespace Milioners
         bool Lose { set; get; }
         bool AnsverTrue { set; get; }
         bool IsFandF { set; get; }
+        bool IsCall { set; get; }
+        bool IsHelpRoom { set; get; }
+
+        int Ansver_AP { set; get; }
+        int Ansver_BP { set; get; }
+        int Ansver_CP { set; get; }
+        int Ansver_DP { set; get; }
+
         string Ansver_AS { set; get; }
         string Ansver_BS { set; get; }
         string Ansver_CS { set; get; }
@@ -38,6 +46,7 @@ namespace Milioners
         float NowTime { set; get; }
         void Error(string z, string s);
      
-
+        int FerstFonF { set; get; }
+        int SecondFonF { set; get; }
     }
 }

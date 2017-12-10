@@ -73,6 +73,7 @@
             this.TimeWindow = new System.Windows.Forms.Timer(this.components);
             this.TimeColor = new System.Windows.Forms.Timer(this.components);
             this.TimeTrueAnsver = new System.Windows.Forms.Timer(this.components);
+            this.TimeCallHelp = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.HelpVariant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AnsverPictureBox)).BeginInit();
@@ -89,7 +90,7 @@
             this.Start.TabIndex = 1;
             this.Start.Text = "Начать игру";
             this.Start.UseVisualStyleBackColor = true;
-            this.Start.Click += new System.EventHandler(this.button1_Click);
+            this.Start.Click += new System.EventHandler(this.StartGames);
             // 
             // ExitG
             // 
@@ -315,6 +316,7 @@
             this.HelpCall.Size = new System.Drawing.Size(53, 33);
             this.HelpCall.TabIndex = 9;
             this.HelpCall.UseVisualStyleBackColor = true;
+            this.HelpCall.Click += new System.EventHandler(this.HelpCall_Click);
             // 
             // HelpRoom
             // 
@@ -326,6 +328,7 @@
             this.HelpRoom.Size = new System.Drawing.Size(53, 33);
             this.HelpRoom.TabIndex = 10;
             this.HelpRoom.UseVisualStyleBackColor = true;
+            this.HelpRoom.Click += new System.EventHandler(this.HelpRoom_Click);
             // 
             // CallLabel
             // 
@@ -586,6 +589,7 @@
         private System.Windows.Forms.Timer TimeWindow;
         private System.Windows.Forms.Timer TimeColor;
         private System.Windows.Forms.Timer TimeTrueAnsver;
+        private System.Windows.Forms.Timer TimeCallHelp;
     }
 }
 
