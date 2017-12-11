@@ -20,11 +20,14 @@ namespace Milioners
         bool trueAnsver = false;
         bool lose = false;
         bool secondMenu = false;
-
+        bool isVisibleCall = false;
 
         bool isFandF = false;
 
         bool[] isButtonV = { true, true, true, true };
+
+        float nowTimeCall = 0;
+        float endTimeCall = 40;
 
         float nowTime = 0;
         float EndTime = 40;
@@ -123,7 +126,7 @@ namespace Milioners
 
             if (NowTime >= EndTime)
             {
-              
+                NowTime = 0;
 
                 ClicNow.BackColor = Color.Black;
                 TimeColor.Stop();
@@ -144,10 +147,11 @@ namespace Milioners
 
             if (NowTime >= EndTime)
             {
-
+                GroupRoomHelp(false);
                 SecondWindow(false);
                 AnsverBoxPicture(false, "");
                 Start_Window(true);
+
 
                 TimeWindow.Stop();
             }
@@ -159,7 +163,7 @@ namespace Milioners
             if (NowTime >= EndTime)
             {
 
-               
+                
                 AnsverBoxPicture(false, "");
 
                 UpdateViewQuestion?.Invoke(this, EventArgs.Empty);
@@ -264,13 +268,10 @@ namespace Milioners
                 Ansver_CP = 0;
                 Ansver_DP = 0;
 
-                 nowTime = 0;
-               
-
-                 nowTimeGAME = 0;
-               
-
-                 nowTimeHelpRoom = 0;
+                nowTimeCall = 0;
+                NowTime = 0;
+                nowTimeGAME = 0;
+                nowTimeHelpRoom = 0;
                
 
 
@@ -284,7 +285,7 @@ namespace Milioners
 
                 win = false;
                 lose = false;             
-                NowTime = 0;
+               
 
                 ZeroProgressBar();
                 GroupRoomHelp(false);
@@ -443,7 +444,12 @@ namespace Milioners
                 if(!IsCall)
                 {
                     TimeCallHelp.Stop();
-                    
+                    if(CallPictureBox.Visible == true)
+                    {
+                        isVisibleCall = true;
+                        CallPictureBox.Visible = false;
+                        CallLabel.Visible = false;
+                    }
                 }
                 if (!IsFandF)
                 {
@@ -466,7 +472,12 @@ namespace Milioners
                 if (!IsCall)
                 {
                     TimeCallHelp.Start();
-                    player.Play();
+                    if (isVisibleCall == true)
+                    {
+                        
+                        CallPictureBox.Visible = false;
+                        CallLabel.Visible = false;
+                    }
                 }
                 if (!IsFandF)
                 {
@@ -617,12 +628,12 @@ namespace Milioners
         }
         public void OnTickCallHelp(object sender, EventArgs e)
         {
-            NowTime += 1;
-            if (NowTime >= EndTime / 2 && CallPictureBox.Visible == false)
+            nowTimeCall += 1;
+            if (nowTimeCall >= endTimeCall / 2 && CallPictureBox.Visible == false)
             {
                 CallLableGroup(true, Ansver);
             }
-            if (NowTime >= EndTime)
+            if (nowTimeCall >= endTimeCall)
             {
                 TimeAnsver.Start();
                 CallLableGroup(false, "");
@@ -642,6 +653,7 @@ namespace Milioners
                 
                 GroupRoomHelp(true);
                 TimeHelpRoom.Start();
+                player = new SoundPlayer("../../Resurses/sound/begin.wav");
                 player.Play();
             }
         }
