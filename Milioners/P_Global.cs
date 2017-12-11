@@ -29,6 +29,7 @@ namespace Milioners
             _view.UpdateViewQuestion += new EventHandler<EventArgs>(UpdateViewQuestion);
             _view.FiftyOnFifty += new EventHandler<EventArgs>(FiftyOnFifty);
             _view.CallHelp += new EventHandler<EventArgs>(CallHelp);
+            _view.ZalHelp += new EventHandler<EventArgs>(ZalHelp);
             // UpdateView();
         }
         private void RandomAnsver()
@@ -38,11 +39,12 @@ namespace Milioners
             int rand = j.Next(0, 3);
             int[,] list_rand = new int[4, 4] { { 3, 2,0,1 }, { 1,3,0,2 }, { 2,0,1,3 },{2,1,3,0 } };
 
-            _view.Ansver_AS = SetAnsver(_view.Ansver_AS, list_rand[rand,0]);
+            _view.Ansver_AS =  SetAnsver(_view.Ansver_AS, list_rand[rand,0]);
             _view.Ansver_BS = SetAnsver(_view.Ansver_BS, list_rand[rand,1]);
             _view.Ansver_CS = SetAnsver(_view.Ansver_CS, list_rand[rand,2]);
-            _view.Ansver_DS = SetAnsver(_view.Ansver_DS, list_rand[rand,3]);       
+            _view.Ansver_DS =  SetAnsver(_view.Ansver_DS, list_rand[rand,3]);       
         }
+   
         private string SetAnsver(string vs, int n)
        {
             switch(n){
@@ -61,15 +63,56 @@ namespace Milioners
             }
             return vs;
        }
+        private void ZalHelp(object sender, EventArgs e)
+        {
+            Random j = new Random();
+            int rand = j.Next(15, 35);
+            if (c1.Element(numberQuestion).Answer_1== _view.Ansver_AS)
+            {
+                _view.Ansver_AP = rand;
+            }
+            else if (c1.Element(numberQuestion).Answer_1 == _view.Ansver_BS)
+            {
+                _view.Ansver_BP = rand;
+            }
+            else if (c1.Element(numberQuestion).Answer_1 == _view.Ansver_CS)
+            {
+                _view.Ansver_CP = rand;
+            }
+            else if (c1.Element(numberQuestion).Answer_1 == _view.Ansver_BS)
+            {
+                _view.Ansver_DP = rand;
+            }
+
+            while(_view.Ansver_AP ==0|| _view.Ansver_BP==0|| _view.Ansver_CP == 0)
+            {
+                rand = j.Next(1, 25);
+                if (_view.Ansver_AP == 0)
+                {
+                    _view.Ansver_AP = rand;
+                }
+                else if (_view.Ansver_BP == 0)
+                {
+                    _view.Ansver_BP = rand;
+                }
+                else if (_view.Ansver_CP == 0)
+                {
+                    _view.Ansver_CP = rand;
+                }
+                
+            }
+            if (_view.Ansver_DP == 0)
+            {
+                _view.Ansver_DP = 100 -(_view.Ansver_BP + _view.Ansver_CP + _view.Ansver_AP) ;
+            }
+        }
         private void CallHelp(object sender, EventArgs e)
         {
             _view.Ansver = c1.Element(numberQuestion).Answer_1;
         }
         private void UpdateViewQuestion(object sender, EventArgs e)
-        {
-            
-            UpdateView();
-            
+        {           
+            UpdateView();           
         }
         private void StartGame(object sender, EventArgs e)
         {
@@ -152,11 +195,7 @@ namespace Milioners
         {
 
         }
-        /// <summary>
-        /// /////////////////////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+     
         private void FiftyOnFifty(object sender, EventArgs e)
         {
           

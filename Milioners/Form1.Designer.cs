@@ -74,6 +74,10 @@
             this.TimeColor = new System.Windows.Forms.Timer(this.components);
             this.TimeTrueAnsver = new System.Windows.Forms.Timer(this.components);
             this.TimeCallHelp = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.TimeHelpRoom = new System.Windows.Forms.Timer(this.components);
+            this.TimerAnsver = new System.Windows.Forms.Label();
+            this.TimeAnsver = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.HelpVariant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AnsverPictureBox)).BeginInit();
@@ -208,7 +212,7 @@
             this.QuestTable.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.QuestTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.QuestTable.ForeColor = System.Drawing.Color.Yellow;
-            this.QuestTable.Location = new System.Drawing.Point(102, 326);
+            this.QuestTable.Location = new System.Drawing.Point(104, 326);
             this.QuestTable.Name = "QuestTable";
             this.QuestTable.Size = new System.Drawing.Size(436, 56);
             this.QuestTable.TabIndex = 11;
@@ -410,10 +414,12 @@
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(46, 19);
+            this.progressBar3.Location = new System.Drawing.Point(46, 60);
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(81, 13);
+            this.progressBar3.Step = 1;
             this.progressBar3.TabIndex = 2;
+            this.progressBar3.Value = 1;
             // 
             // HelpBar
             // 
@@ -471,21 +477,27 @@
             this.progressBar4.Location = new System.Drawing.Point(46, 79);
             this.progressBar4.Name = "progressBar4";
             this.progressBar4.Size = new System.Drawing.Size(81, 13);
+            this.progressBar4.Step = 1;
             this.progressBar4.TabIndex = 5;
+            this.progressBar4.Value = 1;
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(46, 60);
+            this.progressBar2.Location = new System.Drawing.Point(46, 41);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(81, 13);
+            this.progressBar2.Step = 1;
             this.progressBar2.TabIndex = 4;
+            this.progressBar2.Value = 1;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(46, 39);
+            this.progressBar1.Location = new System.Drawing.Point(46, 23);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(81, 13);
+            this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 3;
+            this.progressBar1.Value = 1;
             // 
             // NumberlistView
             // 
@@ -500,6 +512,16 @@
             this.NumberlistView.UseCompatibleStateImageBehavior = false;
             this.NumberlistView.View = System.Windows.Forms.View.Details;
             // 
+            // TimerAnsver
+            // 
+            this.TimerAnsver.BackColor = System.Drawing.Color.AliceBlue;
+            this.TimerAnsver.Location = new System.Drawing.Point(291, 37);
+            this.TimerAnsver.Name = "TimerAnsver";
+            this.TimerAnsver.Size = new System.Drawing.Size(69, 17);
+            this.TimerAnsver.TabIndex = 24;
+            this.TimerAnsver.Text = "60";
+            this.TimerAnsver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,6 +529,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(740, 546);
+            this.Controls.Add(this.TimerAnsver);
             this.Controls.Add(this.NumberlistView);
             this.Controls.Add(this.HelpBar);
             this.Controls.Add(this.AnsverLabel);
@@ -531,6 +554,7 @@
             this.Name = "Form1";
             this.Text = "Миллионер";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit_tolbar_Click);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.HelpVariant.ResumeLayout(false);
@@ -590,6 +614,11 @@
         private System.Windows.Forms.Timer TimeColor;
         private System.Windows.Forms.Timer TimeTrueAnsver;
         private System.Windows.Forms.Timer TimeCallHelp;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer TimeHelpRoom;
+        private System.Windows.Forms.Label TimerAnsver;
+        private System.Windows.Forms.Timer TimeAnsver;
+       
     }
 }
 

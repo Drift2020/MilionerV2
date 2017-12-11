@@ -20,12 +20,24 @@ namespace Milioners
         bool trueAnsver = false;
         bool lose = false;
         bool secondMenu = false;
+
+
         bool isFandF = false;
+
+        bool[] isButtonV = { true, true, true, true };
 
         float nowTime = 0;
         float EndTime = 40;
+
+        float nowTimeGAME = 0;
+        float endTimeGAME = 60;
+
+        float nowTimeHelpRoom = 0;
+        float endTimeHelpRoom = 140;
         Color butColor = Color.Red;
         Button ClicNow;
+        SoundPlayer player = new SoundPlayer("../../Resurses/sound/begin.wav");
+
         int numberQuestion = 0;
         string[] money = new string[]{"100", "200",
             "300", "500", "1000",
@@ -39,6 +51,9 @@ namespace Milioners
             TimeColor.Tick += new EventHandler(OnTickColor);
             TimeTrueAnsver.Tick += new EventHandler(OnTickTrue);
             TimeCallHelp.Tick += new EventHandler(OnTickCallHelp);
+            TimeHelpRoom.Tick+= new EventHandler(OnTickHelpRoom);
+            TimeAnsver.Tick+= new EventHandler(OnTickAnsver);
+            TimeAnsver.Interval = 1000;
             // Начинает вызывать событие Elapsed
 
             if (secondMenu)
@@ -47,6 +62,7 @@ namespace Milioners
             }
             else
             {
+                TimerAnsver.Visible = false;
                 Flag.Visible = false;
                 Exit.Visible = false;
                 Stop.Visible = false;
@@ -99,6 +115,7 @@ namespace Milioners
         public bool IsFandF { set { isFandF = value; } get { return isFandF; } }   
         public bool StartGameQ { set { secondMenu = value; } get { return secondMenu; } }
         public bool IsCall { set; get; }
+        public bool IsStop { set; get; }
         public bool IsHelpRoom { set; get; }
         ////////////////////////////////////////////////////////////////
         public void OnTickColor(object sender, EventArgs e)
@@ -106,7 +123,7 @@ namespace Milioners
 
             if (NowTime >= EndTime)
             {
-                NowTime = 0;
+              
 
                 ClicNow.BackColor = Color.Black;
                 TimeColor.Stop();
@@ -149,25 +166,15 @@ namespace Milioners
 
                 SetColorNewElement(numberQuestion);
                 AnsverTrue = false;
-              
+
+                nowTimeGAME = 0;
+                TimeAnsver.Start();
+
                 TimeTrueAnsver.Stop();
                 
             }
         }
-        public void OnTickCallHelp(object sender, EventArgs e)
-        {
-            NowTime += 1;
-            if(NowTime>=EndTime/2&&CallPictureBox.Visible==false)
-            {
-                CallLableGroup(true, Ansver);
-            }
-            if (NowTime >= EndTime)
-            {
-                CallLableGroup(false, "");
-                TimeCallHelp.Stop();
-                NowTime = 0;
-            }
-        }
+ 
      
         ////////////////////////////////////////////////////////////////
         public void SetColorNewElement(int number)
@@ -202,7 +209,7 @@ namespace Milioners
             HelpRoom.Visible = t;
             HelpVariant.Visible = t;
             NumberlistView.Visible = t;
-
+            TimerAnsver.Visible = t;
 
         }
         ////////////////////////////////////////////////////////////////
@@ -212,7 +219,7 @@ namespace Milioners
             butColor = Color.Red;
             TimeWindow.Start();
             TimeColor.Start();
-            SoundPlayer player = new SoundPlayer("../../Resurses/sound/false.wav");
+            player = new SoundPlayer("../../Resurses/sound/false.wav");
             // player.SoundLocation = "../../sound.wav";
             player.Play();
 
@@ -246,22 +253,46 @@ namespace Milioners
         }
         private void StartGames(object sender, EventArgs e)
         {
-
             StartGame?.Invoke(this, EventArgs.Empty);
             if (StartGameQ)
             {
-                FiftyOnFiftyImage(true);
+                for (int i = 0; i < 4; i++)
+                    isButtonV[0] = false;
 
-                SoundPlayer player = new SoundPlayer("../../Resurses/sound/gong.wav");
+                Ansver_AP = 0;
+                Ansver_BP = 0;
+                Ansver_CP = 0;
+                Ansver_DP = 0;
+
+                 nowTime = 0;
+               
+
+                 nowTimeGAME = 0;
+               
+
+                 nowTimeHelpRoom = 0;
+               
+
+
+                player = new SoundPlayer("../../Resurses/sound/gong.wav");
+                player.Play();
+                nowTimeGAME = 0;
+
                 isFandF = true;
                 IsCall = true;
-                player.Play();               
+                IsHelpRoom = true;
+
                 win = false;
-                lose = false;
+                lose = false;             
                 NowTime = 0;
+
+                ZeroProgressBar();
+                GroupRoomHelp(false);
+                FiftyOnFiftyImage(true);
                 SecondWindow(true);
                 CAllHelpImage(true);
                 Start_Window(false);
+
                 NumberlistView.Clear();
                 NumberlistView.View = View.Details;
 
@@ -288,9 +319,10 @@ namespace Milioners
 
                     NumberlistView.Items.Add(listItem);
                 }
-
                 NumberQuestion = 14;
                 SetColorNewElement(NumberQuestion);
+
+                TimeAnsver.Start();
             }
 
         }
@@ -352,6 +384,12 @@ namespace Milioners
         {
             TimeWindow.Stop();
             TimeColor.Stop();
+            TimeHelpRoom.Stop();
+           
+            TimeTrueAnsver.Stop();
+            TimeCallHelp.Stop();
+          
+
             ExitGame?.Invoke(this, EventArgs.Empty);
 
         }
@@ -368,6 +406,8 @@ namespace Milioners
         {
             if (!win && !lose && !trueAnsver)
             {
+                TimeAnsver.Stop();
+
                 Button temp = ClicNow = sender as Button;
                 Ansver = temp.Text;
 
@@ -393,10 +433,77 @@ namespace Milioners
         //////////////////////////////////////////////////////////////
         private void Stop_Click(object sender, EventArgs e)
         {
-            if (!win && !lose && !trueAnsver)
+            if (!win && !lose && !trueAnsver && !IsStop)
             {
+                IsStop = true;
+                TimeAnsver.Stop();
+              
+               
 
+                if(!IsCall)
+                {
+                    TimeCallHelp.Stop();
+                    
+                }
+                if (!IsFandF)
+                {
+                  
+                }
+                if (!IsHelpRoom)
+                {                  
+                    GroupRoomHelp(false);
+                    TimeHelpRoom.Stop();
+                }
+                player.Stop();
+                StopVisible(false);
             }
+            else if(!win && !lose && !trueAnsver && IsStop)
+            {
+                IsStop = false;
+                TimeAnsver.Start();
+                StopVisible(true);
+
+                if (!IsCall)
+                {
+                    TimeCallHelp.Start();
+                    player.Play();
+                }
+                if (!IsFandF)
+                {
+                   
+                   
+
+                    Ansver_A.Visible=isButtonV[0];
+                    Ansver_B.Visible=isButtonV[1];
+                    Ansver_C.Visible=isButtonV[2];
+                    Ansver_D.Visible=isButtonV[3];
+                }
+                if(!IsHelpRoom)
+                {
+                  
+
+                    GroupRoomHelp(true);
+                    TimeHelpRoom.Start();
+                }
+            }
+        }
+
+        private void StopVisible(bool t)
+        {
+            StartGameQ = t;
+            Ansver_A.Visible = t;
+            Ansver_B.Visible = t;
+            Ansver_C.Visible = t;
+            Ansver_D.Visible = t;
+            Flag.Visible = t;
+                    
+            QuestTable.Visible = t;
+            FandF.Visible = t;
+            HelpCall.Visible = t;
+            HelpRoom.Visible = t;
+            HelpVariant.Visible = t;
+            NumberlistView.Visible = t;
+            TimerAnsver.Visible = t;
         }
         private void Flag_Click(object sender, EventArgs e)
         {
@@ -426,7 +533,7 @@ namespace Milioners
                         Ansver_A.Visible = false;
                         break;
                     case 1:
-                        Ansver_B.Visible = false;
+                       Ansver_B.Visible = false;
                         break;
                     case 2:
                         Ansver_C.Visible = false;
@@ -450,8 +557,11 @@ namespace Milioners
                         Ansver_D.Visible = false;
                         break;
                 }
+                isButtonV[0] = Ansver_A.Visible;
+                isButtonV[1] = Ansver_B.Visible;
+                isButtonV[2] = Ansver_C.Visible;
+                isButtonV[3] = Ansver_D.Visible;
 
-               
                 FiftyOnFiftyImage(false);
             }           
         }
@@ -474,9 +584,10 @@ namespace Milioners
         {
             if(IsCall)
             {
+                TimeAnsver.Stop();
                 CallHelp?.Invoke(this, EventArgs.Empty);
 
-                SoundPlayer player = new SoundPlayer("../../Resurses/sound/zvonok.wav");
+                player = new SoundPlayer("../../Resurses/sound/zvonok.wav");
                 player.Play();
 
                 CAllHelpImage(false);
@@ -504,13 +615,34 @@ namespace Milioners
             }
 
         }
+        public void OnTickCallHelp(object sender, EventArgs e)
+        {
+            NowTime += 1;
+            if (NowTime >= EndTime / 2 && CallPictureBox.Visible == false)
+            {
+                CallLableGroup(true, Ansver);
+            }
+            if (NowTime >= EndTime)
+            {
+                TimeAnsver.Start();
+                CallLableGroup(false, "");
+                TimeCallHelp.Stop();
+                
+            }
+        }
         //////////////////////////////////////////////////////////////
         private void HelpRoom_Click(object sender, EventArgs e)
         {
             if(IsHelpRoom)
             {
+                IsHelpRoom = false;
                 ZalHelp?.Invoke(this, EventArgs.Empty);
 
+                TimeAnsver.Stop();
+                
+                GroupRoomHelp(true);
+                TimeHelpRoom.Start();
+                player.Play();
             }
         }
         private void GroupRoomHelp(bool isTrue)
@@ -519,15 +651,73 @@ namespace Milioners
         }
         public void OnTickHelpRoom(object sender, EventArgs e)
         {
-            NowTime += 1;
+            nowTimeHelpRoom += 1;
 
-            if (NowTime >= EndTime)
+            if(nowTimeHelpRoom<=Ansver_AP)
             {
+                progressBar1.Value += 1;
+                label1.Text = "A:" + progressBar1.Value + "%";
+            }
+            if (nowTimeHelpRoom <= Ansver_BP)
+            {
+                progressBar2.Value += 1;
+                label2.Text = "B:" + progressBar2.Value + "%";
+            }
+            if (nowTimeHelpRoom <= Ansver_CP)
+            {
+                progressBar3.Value += 1;
+                label3.Text = "C:" + progressBar3.Value + "%";
+            }
+            if (nowTimeHelpRoom <= Ansver_DP)
+            {
+                progressBar4.Value += 1;
+                label4.Text = "D:" + progressBar4.Value + "%";
+            }
 
-                NowTime = 0;
+
+            if (nowTimeHelpRoom >=  endTimeHelpRoom)
+            {
+                TimeAnsver.Start();
+                player.Stop();
+                GroupRoomHelp(false);
+                TimeHelpRoom.Stop();
+              
+            }
+           
+        }
+        private void ZeroProgressBar()
+        {
+            progressBar1.Value = 0;
+            progressBar2.Value = 0;
+            progressBar3.Value = 0;
+            progressBar4.Value = 0;
+        }
+        //////////////////////////////////////////////////////////////
+        private void OnTickAnsver(object sender, EventArgs e)
+        {
+            nowTimeGAME += 1;
+            TimerAnsver.Text = (60f - nowTimeGAME).ToString();
+
+            if ( nowTimeGAME>= endTimeGAME)
+            {
+                EndTimeGame();
+                TimeAnsver.Stop();
             }
         }
+        private void EndTimeGame()
+        {
+            lose = true;
+         
+            AnsverBoxPicture(true, "Время закончилось!");
+            TimeWindow.Start();
+        }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
+        }
     }
+
+   
+   
 }
