@@ -39,10 +39,10 @@ namespace Milioners
             int rand = j.Next(0, 3);
             int[,] list_rand = new int[4, 4] { { 3, 2,0,1 }, { 1,3,0,2 }, { 2,0,1,3 },{2,1,3,0 } };
 
-            _view.Ansver_AS =  SetAnsver(_view.Ansver_AS, list_rand[rand,0]);
-            _view.Ansver_BS = SetAnsver(_view.Ansver_BS, list_rand[rand,1]);
-            _view.Ansver_CS = SetAnsver(_view.Ansver_CS, list_rand[rand,2]);
-            _view.Ansver_DS =  SetAnsver(_view.Ansver_DS, list_rand[rand,3]);       
+            _view.Ansver_AS ="A."+ SetAnsver(_view.Ansver_AS, list_rand[rand,0]);
+            _view.Ansver_BS = "B." + SetAnsver(_view.Ansver_BS, list_rand[rand,1]);
+            _view.Ansver_CS = "C." + SetAnsver(_view.Ansver_CS, list_rand[rand,2]);
+            _view.Ansver_DS = "D." + SetAnsver(_view.Ansver_DS, list_rand[rand,3]);
         }
    
         private string SetAnsver(string vs, int n)
@@ -162,7 +162,7 @@ namespace Milioners
         {
             try
             {
-                if (c1.Element(numberQuestion).Answer_1 == _view.Ansver)
+                if (_view.Ansver.Contains(c1.Element(numberQuestion).Answer_1))
                 {
                     if (numberQuestion == 14)
                     {
@@ -207,7 +207,7 @@ namespace Milioners
                 switch (number)
                 {
                     case 0:
-                        if (_view.Ansver_AS == c1.Element(numberQuestion).Answer_1)
+                        if (_view.Ansver_AS.Contains(c1.Element(numberQuestion).Answer_1))
                         {
                             number = r.Next(0, 3);
                         }
@@ -221,7 +221,7 @@ namespace Milioners
                         }
                         break;
                     case 1:
-                        if (_view.Ansver_BS == c1.Element(numberQuestion).Answer_1)
+                        if (_view.Ansver_BS.Contains(c1.Element(numberQuestion).Answer_1))
                         {
                             number = r.Next(0, 3);
                         }
@@ -235,7 +235,7 @@ namespace Milioners
                         }
                         break;
                     case 2:
-                        if (_view.Ansver_CS == c1.Element(numberQuestion).Answer_1)
+                        if (_view.Ansver_CS.Contains(c1.Element(numberQuestion).Answer_1))
                         {
                             number = r.Next(0, 3);
                         }
@@ -249,7 +249,7 @@ namespace Milioners
                         }
                         break;
                     case 3:
-                        if (_view.Ansver_DS == c1.Element(numberQuestion).Answer_1)
+                        if (_view.Ansver_DS.Contains(c1.Element(numberQuestion).Answer_1))
                         {
                             number = r.Next(0, 3);
                         }

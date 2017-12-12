@@ -40,7 +40,7 @@ namespace Milioners
         Color butColor = Color.Red;
         Button ClicNow;
         SoundPlayer player = new SoundPlayer("../../Resurses/sound/begin.wav");
-
+      
         int numberQuestion = 0;
         string[] money = new string[]{"100", "200",
             "300", "500", "1000",
@@ -95,6 +95,7 @@ namespace Milioners
         public event EventHandler<EventArgs> UpdateViewQuestion;
         public event EventHandler<EventArgs> ZalHelp;
         ////////////////////////////////////////////////////////////////
+        #region pole
         public int FerstFonF { set; get; }
         public int SecondFonF { set; get; }
         public string ShowDialog {set; get;}
@@ -120,6 +121,7 @@ namespace Milioners
         public bool IsCall { set; get; }
         public bool IsStop { set; get; }
         public bool IsHelpRoom { set; get; }
+        #endregion pole
         ////////////////////////////////////////////////////////////////
         public void OnTickColor(object sender, EventArgs e)
         {
@@ -228,6 +230,10 @@ namespace Milioners
             player.Play();
 
         }
+        private void WinGame()
+        {
+            TimeAnsver.Stop();
+        }
         private void TrueAnsver()
         {
             AnsverBoxPicture(true, "Ответ верен!");
@@ -284,15 +290,17 @@ namespace Milioners
                 IsHelpRoom = true;
 
                 win = false;
-                lose = false;             
-               
+                lose = false;
 
-                ZeroProgressBar();
-                GroupRoomHelp(false);
-                FiftyOnFiftyImage(true);
-                SecondWindow(true);
-                CAllHelpImage(true);
                 Start_Window(false);
+                ZeroProgressBar();
+                GroupRoomHelp(false);              
+                SecondWindow(true);
+
+                FiftyOnFiftyImage(true);
+                HelpRoomImage(true);
+                CAllHelpImage(true);
+                
 
                 NumberlistView.Clear();
                 NumberlistView.View = View.Details;
@@ -328,6 +336,7 @@ namespace Milioners
 
         }
         //////////////////////////////////////////////////////////////
+        #region ModalDialog
         private void CreatQvest_Click(object sender, EventArgs e)
         {
             Add_Edit Add_Edit_form = new Add_Edit(true);
@@ -360,48 +369,46 @@ namespace Milioners
                 MessageBox.Show("Вопрос удалён", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        #endregion ModalDialog
         //////////////////////////////////////////////////////////////
 
         //////////////////////////////////////////////////////////////
+        #region Exit
         private void Exit_tolbar_Click(object sender, EventArgs e)
         {
-            DialogResult resalt = MessageBox.Show("Точно хотите выйти?", "Выход", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if (resalt == DialogResult.OK)
-                Close();
-
 
         }
         private void Exit_Click(object sender, EventArgs e)
         {
             if (!win && !lose)
-            {
-                DialogResult resalt = MessageBox.Show("Точно хотите выйти?", "Выход", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                if (resalt == DialogResult.OK)
+            {            
                     Close();
             }
 
         }
         private void Exit_tolbar_Click(object sender, FormClosingEventArgs e)
         {
-            TimeWindow.Stop();
-            TimeColor.Stop();
-            TimeHelpRoom.Stop();
-           
-            TimeTrueAnsver.Stop();
-            TimeCallHelp.Stop();
-          
-
-            ExitGame?.Invoke(this, EventArgs.Empty);
-
-        }
-        //////////////////////////////////////////////////////////////
-        private void button2_Click(object sender, EventArgs e)
-        {
             DialogResult resalt = MessageBox.Show("Точно хотите выйти?", "Выход", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (resalt == DialogResult.OK)
-                Close();
+            {
+                TimeWindow.Stop();
+                TimeColor.Stop();
+                TimeHelpRoom.Stop();
 
+                TimeTrueAnsver.Stop();
+                TimeCallHelp.Stop();
+
+
+                ExitGame?.Invoke(this, EventArgs.Empty);
+            }           
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+           Close();
+        }
+        #endregion Exit
+        //////////////////////////////////////////////////////////////
+
         //////////////////////////////////////////////////////////////
         private void AnsverClic(object sender, EventArgs e)
         {
@@ -416,7 +423,7 @@ namespace Milioners
 
                 if (win)
                 {
-
+                    WinGame();
                 }
                 else if (lose)
                 {                
@@ -434,7 +441,7 @@ namespace Milioners
         //////////////////////////////////////////////////////////////
         private void Stop_Click(object sender, EventArgs e)
         {
-            if (!win && !lose && !trueAnsver && !IsStop)
+            if (!win && !lose && !trueAnsver && !IsStop && StartGameQ)
             {
                 IsStop = true;
                 TimeAnsver.Stop();
@@ -463,7 +470,7 @@ namespace Milioners
                 player.Stop();
                 StopVisible(false);
             }
-            else if(!win && !lose && !trueAnsver && IsStop)
+            else if(!win && !lose && !trueAnsver && IsStop && StartGameQ)
             {
                 IsStop = false;
                 TimeAnsver.Start();
@@ -501,7 +508,7 @@ namespace Milioners
 
         private void StopVisible(bool t)
         {
-            StartGameQ = t;
+           
             Ansver_A.Visible = t;
             Ansver_B.Visible = t;
             Ansver_C.Visible = t;
@@ -591,6 +598,7 @@ namespace Milioners
             SecondFonF = FerstFonF = 5;
         }
         //////////////////////////////////////////////////////////////
+        #region Call
         private void HelpCall_Click(object sender, EventArgs e)
         {
             if(IsCall)
@@ -641,11 +649,28 @@ namespace Milioners
                 
             }
         }
+        #endregion Call
         //////////////////////////////////////////////////////////////
+        #region HelpRoom
+        private void HelpRoomImage(bool isTrue)
+        {
+            if (isTrue)
+            {
+                HelpRoom.Image = Image.FromFile("../../Resurses/Image/3.jpg");
+
+            }
+            else
+            {
+                HelpRoom.Image = Image.FromFile("../../Resurses/Image/6.jpg");
+
+            }
+
+        }
         private void HelpRoom_Click(object sender, EventArgs e)
         {
             if(IsHelpRoom)
             {
+                HelpRoomImage(false);
                 IsHelpRoom = false;
                 ZalHelp?.Invoke(this, EventArgs.Empty);
 
@@ -704,6 +729,7 @@ namespace Milioners
             progressBar3.Value = 0;
             progressBar4.Value = 0;
         }
+        #endregion HelpRoom
         //////////////////////////////////////////////////////////////
         private void OnTickAnsver(object sender, EventArgs e)
         {
@@ -723,11 +749,7 @@ namespace Milioners
             AnsverBoxPicture(true, "Время закончилось!");
             TimeWindow.Start();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 
    

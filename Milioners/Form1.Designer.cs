@@ -133,19 +133,21 @@
             this.начатьИгруToolStripMenuItem.Name = "начатьИгруToolStripMenuItem";
             this.начатьИгруToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.начатьИгруToolStripMenuItem.Text = "Начать игру";
+            this.начатьИгруToolStripMenuItem.Click += new System.EventHandler(this.StartGames);
             // 
             // остановатьИгруToolStripMenuItem
             // 
             this.остановатьИгруToolStripMenuItem.Name = "остановатьИгруToolStripMenuItem";
             this.остановатьИгруToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.остановатьИгруToolStripMenuItem.Text = "Остановать игру";
+            this.остановатьИгруToolStripMenuItem.Click += new System.EventHandler(this.Stop_Click);
             // 
             // Exit_tolbar
             // 
             this.Exit_tolbar.Name = "Exit_tolbar";
             this.Exit_tolbar.Size = new System.Drawing.Size(165, 22);
             this.Exit_tolbar.Text = "Выход";
-            this.Exit_tolbar.Click += new System.EventHandler(this.Exit_tolbar_Click);
+            this.Exit_tolbar.Click += new System.EventHandler(this.button2_Click);
             // 
             // ToolStripMenuItem1
             // 
@@ -554,7 +556,7 @@
             this.Name = "Form1";
             this.Text = "Миллионер";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit_tolbar_Click);
-            this.Load += new System.EventHandler(this.Form1_Load);
+
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.HelpVariant.ResumeLayout(false);
