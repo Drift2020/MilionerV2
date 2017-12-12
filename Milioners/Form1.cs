@@ -26,6 +26,9 @@ namespace Milioners
 
         bool[] isButtonV = { true, true, true, true };
 
+        float nowTimeWin = 0;
+        float endTimeWin = 10;
+
         float nowTimeCall = 0;
         float endTimeCall = 40;
 
@@ -57,6 +60,7 @@ namespace Milioners
             TimeHelpRoom.Tick+= new EventHandler(OnTickHelpRoom);
             TimeAnsver.Tick+= new EventHandler(OnTickAnsver);
             TimeAnsver.Interval = 1000;
+            TimeWin.Tick += new EventHandler(OnTickWin);
             // Начинает вызывать событие Elapsed
 
             if (secondMenu)
@@ -65,6 +69,7 @@ namespace Milioners
             }
             else
             {
+                LableWin.Visible = false;
                 TimerAnsver.Visible = false;
                 Flag.Visible = false;
                 Exit.Visible = false;
@@ -230,9 +235,41 @@ namespace Milioners
             player.Play();
 
         }
+        private void WinGroup(bool isTrue,string s)
+        {
+            if(isTrue)
+            {
+                LableWin.Visible = isTrue;
+                LableWin.Text = s;
+                pictureBox1.Image= Image.FromFile("../../Resurses/Image/vig.jpg");
+            }
+            else
+            {
+                LableWin.Visible = isTrue;
+                LableWin.Text = s;
+                pictureBox1.Image = Image.FromFile("../../Resurses/Image/mil.jpg");
+            }
+            
+        }
         private void WinGame()
         {
             TimeAnsver.Stop();
+            TimeWin.Start();
+            WinGroup(true,("Победа!!! Вы выйграли "+ NumberlistView.Items[numberQuestion]+ " белорусских рублей!!!"));
+            SecondWindow(false);
+
+        }
+        public void OnTickWin(object sender, EventArgs e)
+        {
+            nowTimeWin += 1;
+
+            if(nowTimeWin>= endTimeWin)
+            {
+                WinGroup(false,"");
+                Start_Window(true);
+                nowTimeWin = 0;
+                TimeWin.Stop();
+            }
         }
         private void TrueAnsver()
         {
@@ -480,32 +517,25 @@ namespace Milioners
                 {
                     TimeCallHelp.Start();
                     if (isVisibleCall == true)
-                    {
-                        
+                    {                        
                         CallPictureBox.Visible = false;
                         CallLabel.Visible = false;
                     }
                 }
                 if (!IsFandF)
-                {
-                   
-                   
-
+                {                                    
                     Ansver_A.Visible=isButtonV[0];
                     Ansver_B.Visible=isButtonV[1];
                     Ansver_C.Visible=isButtonV[2];
                     Ansver_D.Visible=isButtonV[3];
                 }
                 if(!IsHelpRoom)
-                {
-                  
-
+                {                 
                     GroupRoomHelp(true);
                     TimeHelpRoom.Start();
                 }
             }
         }
-
         private void StopVisible(bool t)
         {
            
@@ -731,6 +761,7 @@ namespace Milioners
         }
         #endregion HelpRoom
         //////////////////////////////////////////////////////////////
+        #region TimeGame
         private void OnTickAnsver(object sender, EventArgs e)
         {
             nowTimeGAME += 1;
@@ -749,9 +780,10 @@ namespace Milioners
             AnsverBoxPicture(true, "Время закончилось!");
             TimeWindow.Start();
         }
-     
+        #endregion TimeGame
+
     }
 
-   
-   
+
+
 }

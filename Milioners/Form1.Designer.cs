@@ -78,6 +78,8 @@
             this.TimeHelpRoom = new System.Windows.Forms.Timer(this.components);
             this.TimerAnsver = new System.Windows.Forms.Label();
             this.TimeAnsver = new System.Windows.Forms.Timer(this.components);
+            this.TimeWin = new System.Windows.Forms.Timer(this.components);
+            this.LableWin = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.HelpVariant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AnsverPictureBox)).BeginInit();
@@ -524,6 +526,21 @@
             this.TimerAnsver.Text = "60";
             this.TimerAnsver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // TimeWin
+            // 
+            this.TimeWin.Interval = 1000;
+            // 
+            // LableWin
+            // 
+            this.LableWin.BackColor = System.Drawing.Color.AliceBlue;
+            this.LableWin.Font = new System.Drawing.Font("Mistral", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LableWin.Location = new System.Drawing.Point(291, 228);
+            this.LableWin.Name = "LableWin";
+            this.LableWin.Size = new System.Drawing.Size(212, 126);
+            this.LableWin.TabIndex = 25;
+            this.LableWin.Text = "Вы";
+            this.LableWin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -531,6 +548,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(740, 546);
+            this.Controls.Add(this.LableWin);
             this.Controls.Add(this.TimerAnsver);
             this.Controls.Add(this.NumberlistView);
             this.Controls.Add(this.HelpBar);
@@ -556,7 +574,6 @@
             this.Name = "Form1";
             this.Text = "Миллионер";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit_tolbar_Click);
-
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.HelpVariant.ResumeLayout(false);
@@ -620,7 +637,8 @@
         private System.Windows.Forms.Timer TimeHelpRoom;
         private System.Windows.Forms.Label TimerAnsver;
         private System.Windows.Forms.Timer TimeAnsver;
-       
+        private System.Windows.Forms.Timer TimeWin;
+        private System.Windows.Forms.Label LableWin;
     }
 }
 
