@@ -30,6 +30,7 @@ namespace Milioners
             _view.FiftyOnFifty += new EventHandler<EventArgs>(FiftyOnFifty);
             _view.CallHelp += new EventHandler<EventArgs>(CallHelp);
             _view.ZalHelp += new EventHandler<EventArgs>(ZalHelp);
+            _view.LoseGameE+= new EventHandler<EventArgs>(LoseGameE);
             // UpdateView();
         }
         private void RandomAnsver()
@@ -63,23 +64,27 @@ namespace Milioners
             }
             return vs;
        }
+        private void LoseGameE(object sender, EventArgs e)
+        {
+            _view.Ansver = c1.Element(numberQuestion).Answer_1;
+        }
         private void ZalHelp(object sender, EventArgs e)
         {
             Random j = new Random();
             int rand = j.Next(15, 35);
-            if (c1.Element(numberQuestion).Answer_1== _view.Ansver_AS)
+            if (c1.Element(numberQuestion).Answer_1.Contains( _view.Ansver_AS))
             {
                 _view.Ansver_AP = rand;
             }
-            else if (c1.Element(numberQuestion).Answer_1 == _view.Ansver_BS)
+            else if (c1.Element(numberQuestion).Answer_1.Contains(_view.Ansver_BS))
             {
                 _view.Ansver_BP = rand;
             }
-            else if (c1.Element(numberQuestion).Answer_1 == _view.Ansver_CS)
+            else if (c1.Element(numberQuestion).Answer_1.Contains(_view.Ansver_CS))
             {
                 _view.Ansver_CP = rand;
             }
-            else if (c1.Element(numberQuestion).Answer_1 == _view.Ansver_BS)
+            else if (c1.Element(numberQuestion).Answer_1.Contains(_view.Ansver_DS))
             {
                 _view.Ansver_DP = rand;
             }
@@ -152,7 +157,7 @@ namespace Milioners
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message, "ошибка", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+               
                 c.Save();
             }
 

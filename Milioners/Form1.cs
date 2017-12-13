@@ -26,6 +26,10 @@ namespace Milioners
 
         bool[] isButtonV = { true, true, true, true };
 
+       
+        float nowTimeTrueAnsverLose = 0;
+        float endTimeTrueAnsverLose = 40;
+
         float nowTimeWin = 0;
         float endTimeWin = 10;
 
@@ -42,6 +46,7 @@ namespace Milioners
         float endTimeHelpRoom = 140;
         Color butColor = Color.Red;
         Button ClicNow;
+        Button ClicNow2;
         SoundPlayer player = new SoundPlayer("../../Resurses/sound/begin.wav");
       
         int numberQuestion = 0;
@@ -61,6 +66,7 @@ namespace Milioners
             TimeAnsver.Tick+= new EventHandler(OnTickAnsver);
             TimeAnsver.Interval = 1000;
             TimeWin.Tick += new EventHandler(OnTickWin);
+            TimeTrueAnsverLose.Tick += new EventHandler(OnTickTrueAnsverLose);
             // Начинает вызывать событие Elapsed
 
             if (secondMenu)
@@ -91,7 +97,7 @@ namespace Milioners
         }
 
         public event EventHandler<EventArgs> StartGame;
-
+        public event EventHandler<EventArgs> LoseGameE;
         public event EventHandler<EventArgs> ExitGame;
         public event EventHandler<EventArgs> StopGame;
         public event EventHandler<EventArgs> CallHelp;
@@ -185,8 +191,65 @@ namespace Milioners
                 
             }
         }
- 
-     
+        public void OnTickTrueAnsverLose(object sender, EventArgs e)
+        {
+            nowTimeTrueAnsverLose += 1;
+            if(Ansver_A.Text.Contains(Ansver))
+            {
+                ClicNow2 = Ansver_A;
+                if (Ansver_A.BackColor == Color.Black)
+                {
+                    Ansver_A.BackColor = Color.Green;
+                }
+                else
+                {
+                    Ansver_A.BackColor = Color.Black;
+                }
+            }
+            else if (Ansver_B.Text.Contains(Ansver))
+            {
+                ClicNow2 = Ansver_B;
+                if (Ansver_B.BackColor == Color.Black)
+                {
+                    Ansver_B.BackColor = Color.Green;
+                }
+                else
+                {
+                    Ansver_B.BackColor = Color.Black;
+                }
+            }
+            else if (Ansver_D.Text.Contains(Ansver))
+            {
+                ClicNow2 = Ansver_D;
+                if (Ansver_D.BackColor == Color.Black)
+                {
+                    Ansver_D.BackColor = Color.Green;
+                }
+                else
+                {
+                    Ansver_D.BackColor = Color.Black;
+                }
+            }
+            else if (Ansver_C.Text.Contains(Ansver))
+            {
+                ClicNow2 = Ansver_C;
+                if (Ansver_C.BackColor == Color.Black)
+                {
+                    Ansver_C.BackColor = Color.Green;
+                }
+                else
+                {
+                    Ansver_C.BackColor = Color.Black;
+                }
+            }
+
+            if (nowTimeTrueAnsverLose >= endTimeTrueAnsverLose)
+            {
+                ClicNow2.BackColor = Color.Black;
+                TimeTrueAnsverLose.Stop();
+            }
+        }
+
         ////////////////////////////////////////////////////////////////
         public void SetColorNewElement(int number)
         {
@@ -230,6 +293,11 @@ namespace Milioners
             butColor = Color.Red;
             TimeWindow.Start();
             TimeColor.Start();
+
+        
+            LoseGameE?.Invoke(this, EventArgs.Empty);
+            TimeTrueAnsverLose.Start();
+
             player = new SoundPlayer("../../Resurses/sound/false.wav");
             // player.SoundLocation = "../../sound.wav";
             player.Play();
@@ -255,7 +323,7 @@ namespace Milioners
         {
             TimeAnsver.Stop();
             TimeWin.Start();
-            WinGroup(true,("Победа!!! Вы выйграли "+ NumberlistView.Items[numberQuestion]+ " белорусских рублей!!!"));
+            WinGroup(true, ("Победа!!! Вы выйграли " + (money[14]) + " белорусских рублей!!!"));
             SecondWindow(false);
 
         }
@@ -305,6 +373,8 @@ namespace Milioners
             {
                 for (int i = 0; i < 4; i++)
                     isButtonV[0] = false;
+
+                nowTimeTrueAnsverLose = 0;
 
                 Ansver_AP = 0;
                 Ansver_BP = 0;
@@ -367,7 +437,7 @@ namespace Milioners
                 }
                 NumberQuestion = 14;
                 SetColorNewElement(NumberQuestion);
-
+             
                 TimeAnsver.Start();
             }
 
@@ -423,11 +493,17 @@ namespace Milioners
             }
 
         }
-        private void Exit_tolbar_Click(object sender, FormClosingEventArgs e)
+        new void Close()
         {
             DialogResult resalt = MessageBox.Show("Точно хотите выйти?", "Выход", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (resalt == DialogResult.OK)
             {
+                base.Close();
+            }
+        }
+        private void Exit_tolbar_Click(object sender, FormClosingEventArgs e)
+        {
+         
                 TimeWindow.Stop();
                 TimeColor.Stop();
                 TimeHelpRoom.Stop();
@@ -437,7 +513,7 @@ namespace Milioners
 
 
                 ExitGame?.Invoke(this, EventArgs.Empty);
-            }           
+                  
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -782,6 +858,10 @@ namespace Milioners
         }
         #endregion TimeGame
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

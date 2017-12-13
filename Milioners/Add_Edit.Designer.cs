@@ -96,7 +96,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(242, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Введите первый вариант ответа(правельный):";
+            this.label2.Text = "Введите первый вариант ответа(правильный):";
             // 
             // label3
             // 
@@ -192,6 +192,7 @@
             this.Controls.Add(this.textBoxAnswer_2);
             this.Controls.Add(this.textBoxAnswer_1);
             this.Controls.Add(this.textBoxQuestion);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Add_Edit";

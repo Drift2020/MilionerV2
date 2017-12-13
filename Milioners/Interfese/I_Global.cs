@@ -15,7 +15,7 @@ namespace Milioners
         event EventHandler<EventArgs> AnsverClick;
         event EventHandler<EventArgs> CallHelp;
         event EventHandler<EventArgs> ZalHelp;
-
+        event EventHandler<EventArgs> LoseGameE;
         event EventHandler<EventArgs> UpdateViewQuestion;
         event EventHandler<EventArgs> FiftyOnFifty;
         string ShowDialog

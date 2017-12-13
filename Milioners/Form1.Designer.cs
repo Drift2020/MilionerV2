@@ -80,6 +80,7 @@
             this.TimeAnsver = new System.Windows.Forms.Timer(this.components);
             this.TimeWin = new System.Windows.Forms.Timer(this.components);
             this.LableWin = new System.Windows.Forms.Label();
+            this.TimeTrueAnsverLose = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.HelpVariant.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AnsverPictureBox)).BeginInit();
@@ -569,11 +570,13 @@
             this.Controls.Add(this.Start);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Миллионер";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit_tolbar_Click);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.HelpVariant.ResumeLayout(false);
@@ -639,6 +642,7 @@
         private System.Windows.Forms.Timer TimeAnsver;
         private System.Windows.Forms.Timer TimeWin;
         private System.Windows.Forms.Label LableWin;
+        private System.Windows.Forms.Timer TimeTrueAnsverLose;
     }
 }
 
